@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieHub - Select Theater, Show & Seats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="confirmation.css">
+    <style>
+        .theater-picker {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .theater-btn {
+            background-color: #1e293b;
+            border: 2px solid #334155;
+            color: #f8fafc;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.25rem;
+            transition: all 0.2s ease;
+        }
+
+        .theater-btn:hover {
+            border-color: #38bdf8;
+        }
+
+        .theater-btn.active {
+            border-color: #38bdf8;
+            background-color: #0284c7;
+            color: #fff;
+        }
+
+        .theater-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .theater-location {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            🎬 <span>Movie</span>Hub
+        </div>
+        <a href="index.html" class="back-home">← Back to Home</a>
+    </header>
+
+    <main class="booking-layout">
+        <div class="selection-container">
+            
+            <!-- 1. THEATER SELECTION -->
+            <section class="booking-section">
+                <h3>1. Select Theater</h3>
+                <div class="theater-picker" id="theaterPicker">
+                    <!-- Dynamic rendering via JS -->
+                </div>
+            </section>
+
+            <!-- 2. DATE SELECTION -->
+            <section class="booking-section">
+                <h3>2. Select Date</h3>
+                <div class="date-picker" id="datePicker">
+                    <button class="date-btn active" data-date="Fri, 12 Sep">
+                        <span class="day">FRI</span>
+                        <span class="num">12 SEP</span>
+                    </button>
+                    <button class="date-btn" data-date="Sat, 13 Sep">
+                        <span class="day">SAT</span>
+                        <span class="num">13 SEP</span>
+                    </button>
+                    <button class="date-btn" data-date="Sun, 14 Sep">
+                        <span class="day">SUN</span>
+                        <span class="num">14 SEP</span>
+                    </button>
+                    <button class="date-btn" data-date="Mon, 15 Sep">
+                        <span class="day">MON</span>
+                        <span class="num">15 SEP</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- 3. TIME SELECTION -->
+            <section class="booking-section">
+                <h3>3. Select Format & Showtime</h3>
+                <div class="time-picker" id="timePicker">
+                    <!-- Dynamic rendering via JS -->
+                </div>
+            </section>
+
+            <!-- 4. SEAT SELECTION -->
+            <section class="booking-section">
+                <h3>4. Choose Seats</h3>
+                
+                <div class="screen-container">
+                    <div class="screen"></div>
+                    <p class="screen-label">SCREEN THIS WAY</p>
+                </div>
+
+                <div class="seat-grid" id="seatGrid">
+                    <!-- Dynamic rendering via JS -->
+                </div>
+
+                <div class="seat-legend">
+                    <div><span class="seat-sample available"></span> Available</div>
+                    <div><span class="seat-sample selected"></span> Selected</div>
+                    <div><span class="seat-sample occupied"></span> Occupied</div>
+                </div>
+            </section>
+
+            <!-- 5. ADD-ONS -->
+            <section class="booking-section">
+                <h3>5. Food & Beverages (Optional)</h3>
+                <div class="addon-grid">
+                    <label class="addon-card">
+                        <input type="checkbox" class="addon-checkbox" data-name="Popcorn Combo" data-price="12.00" checked>
+                        <div class="addon-info">
+                            <strong>Large Popcorn Combo</strong>
+                            <p>1x Caramel Popcorn + 2 Pepsi</p>
+                            <span class="addon-price">+$12.00</span>
+                        </div>
+                    </label>
+                    <label class="addon-card">
+                        <input type="checkbox" class="addon-checkbox" data-name="Nachos & Cheese" data-price="8.00">
+                        <div class="addon-info">
+                            <strong>Nachos & Cheese</strong>
+                            <p>1x Large Nachos with dip</p>
+                            <span class="addon-price">+$8.00</span>
+                        </div>
+                    </label>
+                </div>
+            </section>
+        </div>
+
+        <!-- SIDEBAR SUMMARY -->
+        <div class="booking-summary-card">
+            <h3>Booking Summary</h3>
+            <div class="summary-details">
+                <p><strong>Movie:</strong> Deadpool & Wolverine</p>
+                <p><strong>Theater:</strong> <span id="summaryTheater">PVR Director's Cut (Screen 3)</span></p>
+                <p><strong>Showtime:</strong> <span id="summaryShowtime">Fri, 12 Sep @ 07:30 PM</span></p>
+                <p><strong>Seats:</strong> <span id="summarySeats">None Selected</span></p>
+                <hr class="divider">
+                <div id="summaryBreakdown">
+                    <div class="price-row">
+                        <span>Tickets</span>
+                        <span id="summaryTicketCost">$0.00</span>
+                    </div>
+                </div>
+                <div id="summaryAddons"></div>
+                <div class="price-row">
+                    <span>Convenience Fee</span>
+                    <span>$2.50</span>
+                </div>
+                <hr class="divider">
+                <div class="price-row total">
+                    <span>Total Amount</span>
+                    <span class="price" id="summaryTotal">$2.50</span>
+                </div>
+            </div>
+            <a href="confirmation.html" class="btn btn-primary proceed-btn">Proceed to Pay & Confirm</a>
+        </div>
+    </main>
+
+    <script>
+        // State management
+        const state = {
+            selectedTheater: 'pvr',
+            selectedDate: 'Fri, 12 Sep',
+            selectedShowtime: null,
+            selectedSeats: [],
+            selectedAddons: []
+        };
+
+        // Data structure for theaters, prices, showtimes, and seat maps
+        const theaterData = {
+            pvr: {
+                name: "PVR Director's Cut",
+                location: "Screen 3",
+                ticketPrice: 14.00,
+                showtimes: [
+                    { time: "10:15 AM", format: "2D" },
+                    { time: "01:45 PM", format: "3D" },
+                    { time: "07:30 PM", format: "IMAX 3D" },
+                    { time: "10:45 PM", format: "4DX" }
+                ],
+                seats: [
+                    { row: "E", seats: [{ id: "E10", status: "available" }, { id: "E11", status: "available" }, { id: "E12", status: "available" }, { id: "E13", status: "available" }, { id: "E14", status: "available" }, { id: "E15", status: "occupied" }] },
+                    { row: "D", seats: [{ id: "D10", status: "available" }, { id: "D11", status: "available" }, { id: "D12", status: "occupied" }, { id: "D13", status: "occupied" }, { id: "D14", status: "available" }, { id: "D15", status: "available" }] }
+                ]
+            },
+            imax: {
+                name: "IMAX Grand Theater",
+                location: "Screen 1 (Laser)",
+                ticketPrice: 18.00,
+                showtimes: [
+                    { time: "11:00 AM", format: "IMAX 3D" },
+                    { time: "03:15 PM", format: "IMAX 3D" },
+                    { time: "08:00 PM", format: "IMAX 3D" }
+                ],
+                seats: [
+                    { row: "F", seats: [{ id: "F1", status: "occupied" }, { id: "F2", status: "occupied" }, { id: "F3", status: "available" }, { id: "F4", status: "available" }, { id: "F5", status: "available" }, { id: "F6", status: "occupied" }] },
+                    { row: "E", seats: [{ id: "E1", status: "available" }, { id: "E2", status: "available" }, { id: "E3", status: "available" }, { id: "E4", status: "available" }, { id: "E5", status: "occupied" }, { id: "E6", status: "occupied" }] },
+                    { row: "D", seats: [{ id: "D1", status: "available" }, { id: "D2", status: "available" }, { id: "D3", status: "available" }, { id: "D4", status: "available" }, { id: "D5", status: "available" }, { id: "D6", status: "available" }] }
+                ]
+            },
+            cinepolis: {
+                name: "Cinépolis VIP",
+                location: "Screen 5",
+                ticketPrice: 12.50,
+                showtimes: [
+                    { time: "12:00 PM", format: "2D" },
+                    { time: "04:30 PM", format: "3D" },
+                    { time: "09:15 PM", format: "3D" }
+                ],
+                seats: [
+                    { row: "C", seats: [{ id: "C1", status: "occupied" }, { id: "C2", status: "occupied" }, { id: "C3", status: "occupied" }, { id: "C4", status: "available" }, { id: "C5", status: "available" }] },
+                    { row: "B", seats: [{ id: "B1", status: "available" }, { id: "B2", status: "available" }, { id: "B3", status: "occupied" }, { id: "B4", status: "available" }, { id: "B5", status: "available" }] }
+                ]
+            }
+        };
+
+        // DOM elements
+        const theaterPicker = document.getElementById('theaterPicker');
+        const timePicker = document.getElementById('timePicker');
+        const seatGrid = document.getElementById('seatGrid');
+        const summaryTheater = document.getElementById('summaryTheater');
+        const summaryShowtime = document.getElementById('summaryShowtime');
+        const summarySeats = document.getElementById('summarySeats');
+        const summaryTicketCost = document.getElementById('summaryTicketCost');
+        const summaryAddons = document.getElementById('summaryAddons');
+        const summaryTotal = document.getElementById('summaryTotal');
+
+        // Render functions
+        function renderTheaters() {
+            theaterPicker.innerHTML = '';
+            Object.keys(theaterData).forEach((key) => {
+                const theater = theaterData[key];
+                const btn = document.createElement('button');
+                btn.className = `theater-btn ${state.selectedTheater === key ? 'active' : ''}`;
+                btn.innerHTML = `
+                    <span class="theater-name">${theater.name}</span>
+                    <span class="theater-location">${theater.location} • $${theater.ticketPrice.toFixed(2)}</span>
+                `;
+                btn.addEventListener('click', () => {
+                    state.selectedTheater = key;
+                    state.selectedSeats = [];
+                    renderTheaters();
+                    renderShowtimes();
+                    renderSeats();
+                    updateSummary();
+                });
+                theaterPicker.appendChild(btn);
+            });
+        }
+
+        function renderShowtimes() {
+            timePicker.innerHTML = '';
+            const showtimes = theaterData[state.selectedTheater].showtimes;
+            if (!state.selectedShowtime || !showtimes.some((s) => s.time === state.selectedShowtime.time)) {
+                state.selectedShowtime = showtimes[0];
+            }
+
+            showtimes.forEach((st) => {
+                const btn = document.createElement('button');
+                const isActive = state.selectedShowtime && state.selectedShowtime.time === st.time;
+                btn.className = `time-btn ${isActive ? 'active' : ''}`;
+                btn.innerHTML = `${st.time} <span class="format">${st.format}</span>`;
+                btn.addEventListener('click', () => {
+                    state.selectedShowtime = st;
+                    renderShowtimes();
+                    updateSummary();
+                });
+                timePicker.appendChild(btn);
+            });
+        }
+
+        function renderSeats() {
+            seatGrid.innerHTML = '';
+            const layout = theaterData[state.selectedTheater].seats;
+
+            layout.forEach((rowData) => {
+                const rowDiv = document.createElement('div');
+                rowDiv.className = 'seat-row';
+
+                const label = document.createElement('span');
+                label.className = 'row-label';
+                label.textContent = rowData.row;
+                rowDiv.appendChild(label);
+
+                rowData.seats.forEach((seat) => {
+                    const btn = document.createElement('button');
+                    const isSelected = state.selectedSeats.includes(seat.id);
+                    btn.className = `seat ${seat.status} ${isSelected ? 'selected' : ''}`;
+                    btn.textContent = seat.id;
+
+                    if (seat.status !== 'occupied') {
+                        btn.addEventListener('click', () => {
+                            if (state.selectedSeats.includes(seat.id)) {
+                                state.selectedSeats = state.selectedSeats.filter((s) => s !== seat.id);
+                            } else {
+                                state.selectedSeats.push(seat.id);
+                            }
+                            renderSeats();
+                            updateSummary();
+                        });
+                    }
+                    rowDiv.appendChild(btn);
+                });
+                seatGrid.appendChild(rowDiv);
+            });
+        }
+
+        function updateSummary() {
+            const currentTheater = theaterData[state.selectedTheater];
+            summaryTheater.textContent = `${currentTheater.name} (${currentTheater.location})`;
+            summaryShowtime.textContent = `${state.selectedDate} @ ${state.selectedShowtime ? state.selectedShowtime.time : ''}`;
+
+            // Seats
+            if (state.selectedSeats.length > 0) {
+                summarySeats.textContent = `${state.selectedSeats.join(', ')} (${state.selectedSeats.length} Ticket${state.selectedSeats.length > 1 ? 's' : ''})`;
+            } else {
+                summarySeats.textContent = 'None Selected';
+            }
+
+            // Calculations
+            const ticketTotal = state.selectedSeats.length * currentTheater.ticketPrice;
+            summaryTicketCost.textContent = `$${ticketTotal.toFixed(2)}`;
+
+            // Addons
+            summaryAddons.innerHTML = '';
+            let addonTotal = 0;
+            state.selectedAddons.forEach((addon) => {
+                addonTotal += addon.price;
+                const row = document.createElement('div');
+                row.className = 'price-row';
+                row.innerHTML = `<span>${addon.name}</span><span>+$${addon.price.toFixed(2)}</span>`;
+                summaryAddons.appendChild(row);
+            });
+
+            const convenienceFee = 2.50;
+            const total = ticketTotal + addonTotal + convenienceFee;
+            summaryTotal.textContent = `$${total.toFixed(2)}`;
+        }
+
+        // Event listeners for dates & add-ons
+        document.querySelectorAll('#datePicker .date-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#datePicker .date-btn').forEach((b) => b.classList.remove('active'));
+                btn.classList.add('active');
+                state.selectedDate = btn.getAttribute('data-date');
+                updateSummary();
+            });
+        });
+
+        document.querySelectorAll('.addon-checkbox').forEach((checkbox) => {
+            const handleAddon = () => {
+                const name = checkbox.getAttribute('data-name');
+                const price = parseFloat(checkbox.getAttribute('data-price'));
+                if (checkbox.checked) {
+                    if (!state.selectedAddons.some((a) => a.name === name)) {
+                        state.selectedAddons.push({ name, price });
+                    }
+                } else {
+                    state.selectedAddons = state.selectedAddons.filter((a) => a.name !== name);
+                }
+                updateSummary();
+            };
+
+            checkbox.addEventListener('change', handleAddon);
+            if (checkbox.checked) handleAddon();
+        });
+        document.querySelector('.proceed-btn').addEventListener('click', (e) => {
+            const currentTheater = theaterData[state.selectedTheater];
+    
+            // Calculate total price
+            const ticketTotal = state.selectedSeats.length * currentTheater.ticketPrice;
+            let addonTotal = 0;
+            state.selectedAddons.forEach(a => addonTotal += a.price);
+            const totalPrice = ticketTotal + addonTotal + 2.50;
+
+            const bookingData = {
+                movie: "Deadpool & Wolverine",
+                theaterName: currentTheater.name,
+                screen: currentTheater.location,
+                date: state.selectedDate,
+                time: state.selectedShowtime ? state.selectedShowtime.time : '',
+                format: state.selectedShowtime ? state.selectedShowtime.format : '2D',
+                seats: state.selectedSeats,
+                addons: state.selectedAddons,
+                totalPrice: totalPrice
+            };
+        
+
+            localStorage.setItem('movieBookingData', JSON.stringify(bookingData));
+        });
+
+        // Initialize view
+        renderTheaters();
+        renderShowtimes();
+        renderSeats();
+        updateSummary();
+    </script>
+</body>
+</html>
