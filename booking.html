@@ -3,410 +3,617 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cinevia - Choose Your Seats</title>
+    <title>Cinevia - Book Tickets</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="confirmation.css">
     <link rel="stylesheet" href="booking.css">
 </head>
 <body>
 
     <header class="navbar">
-        <div class="logo">
-            🎬 <span>Cine</span>via
-        </div>
-        <a href="index.html" class="back-home">&larr; Back to Home</a>
+        <div class="logo">🎬 <span>Cinevia</span></div>
+        <a href="index.html" class="back-home">← Back to Home</a>
     </header>
+
+    <!-- SELECTED MOVIE HERO -->
+    <div class="movie-hero">
+        <div class="movie-hero-card">
+            <img id="heroPoster" class="movie-hero-poster" src="" alt="">
+            <div class="movie-hero-info">
+                <span class="movie-hero-tag">NOW BOOKING</span>
+                <h1 id="heroTitle">Loading…</h1>
+                <div class="movie-hero-meta">
+                    <span id="heroGenre"></span>
+                    <span>•</span>
+                    <span id="heroDuration"></span>
+                    <span>•</span>
+                    <span>⭐ <strong id="heroRating"></strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <main class="booking-layout">
         <div class="selection-container">
 
-            <!-- SHOWTIME CONTEXT -->
-            <section class="booking-section show-context">
-                <div class="show-context__poster" aria-hidden="true">DW</div>
-                <div>
-                    <h1>Deadpool &amp; Wolverine <span class="badge">IMAX 3D</span></h1>
-                    <p class="show-context__meta">PVR Director's Cut &middot; Screen 3</p>
-                    <p class="show-context__meta">Fri, 12 Sep 2026 &middot; 07:30 PM</p>
+            <!-- 1. MOVIE PICKER -->
+            <section class="booking-section">
+                <h3>1. Choose Your Movie</h3>
+                <p class="section-hint">Search or scroll through everything currently showing.</p>
+                <div class="movie-search-row">
+                    <input type="text" id="movieSearch" placeholder="Search from 160 movies…">
+                </div>
+                <div class="movie-strip" id="movieStrip"></div>
+                <div class="movie-count" id="movieCount"></div>
+            </section>
+
+            <!-- 2. THEATER SELECTION -->
+            <section class="booking-section">
+                <h3>2. Select Theater</h3>
+                <div class="theater-picker" id="theaterPicker"></div>
+            </section>
+
+            <!-- 3. DATE SELECTION -->
+            <section class="booking-section">
+                <h3>3. Select Date</h3>
+                <div class="calendar-widget">
+                    <div class="calendar-header">
+                        <button class="cal-nav" id="calPrev" type="button">‹</button>
+                        <span class="cal-month-label" id="calMonthLabel"></span>
+                        <button class="cal-nav" id="calNext" type="button">›</button>
+                    </div>
+                    <div class="calendar-weekdays">
+                        <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
+                    <p class="selected-date-label" id="selectedDateLabel"></p>
                 </div>
             </section>
 
-            <!-- SEAT SELECTION -->
+            <!-- 4. TIME SELECTION -->
             <section class="booking-section">
-                <h3>Choose Seats</h3>
+                <h3>4. Select Format & Showtime</h3>
+                <div class="time-picker" id="timePicker"></div>
+            </section>
+
+            <!-- 5. SEAT SELECTION -->
+            <section class="booking-section">
+                <h3>5. Choose Seats</h3>
+                <p class="section-hint">A full hall — Classic near the screen, Premium mid-hall, Recliner at the back.</p>
 
                 <div class="screen-container">
                     <div class="screen"></div>
                     <p class="screen-label">SCREEN THIS WAY</p>
                 </div>
 
-                <div class="seat-grid" id="seatGrid">
-
-                    <div class="seat-row">
-                    <span class="row-label">A</span>
-                    <input type="checkbox" id="seat-A1" class="seat-check" data-price="10" aria-label="Seat A1, silver seat, $10">
-                    <label for="seat-A1" class="seat silver" title="A1">1</label>
-                    <input type="checkbox" id="seat-A2" class="seat-check" data-price="10" aria-label="Seat A2, silver seat, $10">
-                    <label for="seat-A2" class="seat silver" title="A2">2</label>
-                    <input type="checkbox" id="seat-A3" class="seat-check" data-price="10" aria-label="Seat A3, silver seat, $10">
-                    <label for="seat-A3" class="seat silver" title="A3">3</label>
-                    <input type="checkbox" id="seat-A4" class="seat-check" data-price="10" aria-label="Seat A4, silver seat, $10">
-                    <label for="seat-A4" class="seat silver" title="A4">4</label>
-                    <input type="checkbox" id="seat-A5" class="seat-check" data-price="10" aria-label="Seat A5, silver seat, $10">
-                    <label for="seat-A5" class="seat silver" title="A5">5</label>
-                    <input type="checkbox" id="seat-A6" class="seat-check" data-price="10" aria-label="Seat A6, silver seat, $10">
-                    <label for="seat-A6" class="seat silver" title="A6">6</label>
-                    <input type="checkbox" id="seat-A7" class="seat-check" data-price="10" aria-label="Seat A7, silver seat, $10">
-                    <label for="seat-A7" class="seat silver" style="margin-left:16px" title="A7">7</label>
-                    <input type="checkbox" id="seat-A8" class="seat-check" data-price="10" aria-label="Seat A8, silver seat, $10">
-                    <label for="seat-A8" class="seat silver" title="A8">8</label>
-                    <input type="checkbox" id="seat-A9" class="seat-check" data-price="10" aria-label="Seat A9, silver seat, $10">
-                    <label for="seat-A9" class="seat silver" title="A9">9</label>
-                    <input type="checkbox" id="seat-A10" class="seat-check" data-price="10" aria-label="Seat A10, silver seat, $10">
-                    <label for="seat-A10" class="seat silver" title="A10">10</label>
-                    <input type="checkbox" id="seat-A11" class="seat-check" data-price="10" aria-label="Seat A11, silver seat, $10">
-                    <label for="seat-A11" class="seat silver" title="A11">11</label>
-                    <input type="checkbox" id="seat-A12" class="seat-check" data-price="10" aria-label="Seat A12, silver seat, $10">
-                    <label for="seat-A12" class="seat silver" title="A12">12</label>
-                </div>
-
-                <div class="seat-row">
-                    <span class="row-label">B</span>
-                    <input type="checkbox" id="seat-B1" class="seat-check" data-price="10" aria-label="Seat B1, silver seat, $10">
-                    <label for="seat-B1" class="seat silver" title="B1">1</label>
-                    <input type="checkbox" id="seat-B2" class="seat-check" data-price="10" aria-label="Seat B2, silver seat, $10">
-                    <label for="seat-B2" class="seat silver" title="B2">2</label>
-                    <input type="checkbox" id="seat-B3" class="seat-check" disabled data-price="10" aria-label="Seat B3, already booked">
-                    <label for="seat-B3" class="seat occupied" title="B3">3</label>
-                    <input type="checkbox" id="seat-B4" class="seat-check" disabled data-price="10" aria-label="Seat B4, already booked">
-                    <label for="seat-B4" class="seat occupied" title="B4">4</label>
-                    <input type="checkbox" id="seat-B5" class="seat-check" data-price="10" aria-label="Seat B5, silver seat, $10">
-                    <label for="seat-B5" class="seat silver" title="B5">5</label>
-                    <input type="checkbox" id="seat-B6" class="seat-check" data-price="10" aria-label="Seat B6, silver seat, $10">
-                    <label for="seat-B6" class="seat silver" title="B6">6</label>
-                    <input type="checkbox" id="seat-B7" class="seat-check" data-price="10" aria-label="Seat B7, silver seat, $10">
-                    <label for="seat-B7" class="seat silver" style="margin-left:16px" title="B7">7</label>
-                    <input type="checkbox" id="seat-B8" class="seat-check" data-price="10" aria-label="Seat B8, silver seat, $10">
-                    <label for="seat-B8" class="seat silver" title="B8">8</label>
-                    <input type="checkbox" id="seat-B9" class="seat-check" data-price="10" aria-label="Seat B9, silver seat, $10">
-                    <label for="seat-B9" class="seat silver" title="B9">9</label>
-                    <input type="checkbox" id="seat-B10" class="seat-check" data-price="10" aria-label="Seat B10, silver seat, $10">
-                    <label for="seat-B10" class="seat silver" title="B10">10</label>
-                    <input type="checkbox" id="seat-B11" class="seat-check" data-price="10" aria-label="Seat B11, silver seat, $10">
-                    <label for="seat-B11" class="seat silver" title="B11">11</label>
-                    <input type="checkbox" id="seat-B12" class="seat-check" data-price="10" aria-label="Seat B12, silver seat, $10">
-                    <label for="seat-B12" class="seat silver" title="B12">12</label>
-                </div>
-
-                <div class="seat-row">
-                    <span class="row-label">C</span>
-                    <input type="checkbox" id="seat-C1" class="seat-check" data-price="14" aria-label="Seat C1, gold seat, $14">
-                    <label for="seat-C1" class="seat gold" title="C1">1</label>
-                    <input type="checkbox" id="seat-C2" class="seat-check" data-price="14" aria-label="Seat C2, gold seat, $14">
-                    <label for="seat-C2" class="seat gold" title="C2">2</label>
-                    <input type="checkbox" id="seat-C3" class="seat-check" data-price="14" aria-label="Seat C3, gold seat, $14">
-                    <label for="seat-C3" class="seat gold" title="C3">3</label>
-                    <input type="checkbox" id="seat-C4" class="seat-check" data-price="14" aria-label="Seat C4, gold seat, $14">
-                    <label for="seat-C4" class="seat gold" title="C4">4</label>
-                    <input type="checkbox" id="seat-C5" class="seat-check" data-price="14" aria-label="Seat C5, gold seat, $14">
-                    <label for="seat-C5" class="seat gold" title="C5">5</label>
-                    <input type="checkbox" id="seat-C6" class="seat-check" data-price="14" aria-label="Seat C6, gold seat, $14">
-                    <label for="seat-C6" class="seat gold" title="C6">6</label>
-                    <input type="checkbox" id="seat-C7" class="seat-check" data-price="14" aria-label="Seat C7, gold seat, $14">
-                    <label for="seat-C7" class="seat gold" style="margin-left:16px" title="C7">7</label>
-                    <input type="checkbox" id="seat-C8" class="seat-check" data-price="14" aria-label="Seat C8, gold seat, $14">
-                    <label for="seat-C8" class="seat gold" title="C8">8</label>
-                    <input type="checkbox" id="seat-C9" class="seat-check" data-price="14" aria-label="Seat C9, gold seat, $14">
-                    <label for="seat-C9" class="seat gold" title="C9">9</label>
-                    <input type="checkbox" id="seat-C10" class="seat-check" data-price="14" aria-label="Seat C10, gold seat, $14">
-                    <label for="seat-C10" class="seat gold" title="C10">10</label>
-                    <input type="checkbox" id="seat-C11" class="seat-check" data-price="14" aria-label="Seat C11, gold seat, $14">
-                    <label for="seat-C11" class="seat gold" title="C11">11</label>
-                    <input type="checkbox" id="seat-C12" class="seat-check" data-price="14" aria-label="Seat C12, gold seat, $14">
-                    <label for="seat-C12" class="seat gold" title="C12">12</label>
-                </div>
-
-                <div class="seat-row">
-                    <span class="row-label">D</span>
-                    <input type="checkbox" id="seat-D1" class="seat-check" data-price="14" aria-label="Seat D1, gold seat, $14">
-                    <label for="seat-D1" class="seat gold" title="D1">1</label>
-                    <input type="checkbox" id="seat-D2" class="seat-check" data-price="14" aria-label="Seat D2, gold seat, $14">
-                    <label for="seat-D2" class="seat gold" title="D2">2</label>
-                    <input type="checkbox" id="seat-D3" class="seat-check" data-price="14" aria-label="Seat D3, gold seat, $14">
-                    <label for="seat-D3" class="seat gold" title="D3">3</label>
-                    <input type="checkbox" id="seat-D4" class="seat-check" data-price="14" aria-label="Seat D4, gold seat, $14">
-                    <label for="seat-D4" class="seat gold" title="D4">4</label>
-                    <input type="checkbox" id="seat-D5" class="seat-check" disabled data-price="14" aria-label="Seat D5, already booked">
-                    <label for="seat-D5" class="seat occupied" title="D5">5</label>
-                    <input type="checkbox" id="seat-D6" class="seat-check" disabled data-price="14" aria-label="Seat D6, already booked">
-                    <label for="seat-D6" class="seat occupied" title="D6">6</label>
-                    <input type="checkbox" id="seat-D7" class="seat-check" data-price="14" aria-label="Seat D7, gold seat, $14">
-                    <label for="seat-D7" class="seat gold" style="margin-left:16px" title="D7">7</label>
-                    <input type="checkbox" id="seat-D8" class="seat-check" data-price="14" aria-label="Seat D8, gold seat, $14">
-                    <label for="seat-D8" class="seat gold" title="D8">8</label>
-                    <input type="checkbox" id="seat-D9" class="seat-check" data-price="14" aria-label="Seat D9, gold seat, $14">
-                    <label for="seat-D9" class="seat gold" title="D9">9</label>
-                    <input type="checkbox" id="seat-D10" class="seat-check" data-price="14" aria-label="Seat D10, gold seat, $14">
-                    <label for="seat-D10" class="seat gold" title="D10">10</label>
-                    <input type="checkbox" id="seat-D11" class="seat-check" data-price="14" aria-label="Seat D11, gold seat, $14">
-                    <label for="seat-D11" class="seat gold" title="D11">11</label>
-                    <input type="checkbox" id="seat-D12" class="seat-check" disabled data-price="14" aria-label="Seat D12, already booked">
-                    <label for="seat-D12" class="seat occupied" title="D12">12</label>
-                </div>
-
-                <div class="seat-row">
-                    <span class="row-label">E</span>
-                    <input type="checkbox" id="seat-E1" class="seat-check" data-price="14" aria-label="Seat E1, gold seat, $14">
-                    <label for="seat-E1" class="seat gold" title="E1">1</label>
-                    <input type="checkbox" id="seat-E2" class="seat-check" disabled data-price="14" aria-label="Seat E2, already booked">
-                    <label for="seat-E2" class="seat occupied" title="E2">2</label>
-                    <input type="checkbox" id="seat-E3" class="seat-check" data-price="14" aria-label="Seat E3, gold seat, $14">
-                    <label for="seat-E3" class="seat gold" title="E3">3</label>
-                    <input type="checkbox" id="seat-E4" class="seat-check" data-price="14" aria-label="Seat E4, gold seat, $14">
-                    <label for="seat-E4" class="seat gold" title="E4">4</label>
-                    <input type="checkbox" id="seat-E5" class="seat-check" data-price="14" aria-label="Seat E5, gold seat, $14">
-                    <label for="seat-E5" class="seat gold" title="E5">5</label>
-                    <input type="checkbox" id="seat-E6" class="seat-check" data-price="14" aria-label="Seat E6, gold seat, $14">
-                    <label for="seat-E6" class="seat gold" title="E6">6</label>
-                    <input type="checkbox" id="seat-E7" class="seat-check" data-price="14" aria-label="Seat E7, gold seat, $14">
-                    <label for="seat-E7" class="seat gold" style="margin-left:16px" title="E7">7</label>
-                    <input type="checkbox" id="seat-E8" class="seat-check" data-price="14" aria-label="Seat E8, gold seat, $14">
-                    <label for="seat-E8" class="seat gold" title="E8">8</label>
-                    <input type="checkbox" id="seat-E9" class="seat-check" disabled data-price="14" aria-label="Seat E9, already booked">
-                    <label for="seat-E9" class="seat occupied" title="E9">9</label>
-                    <input type="checkbox" id="seat-E10" class="seat-check" data-price="14" aria-label="Seat E10, gold seat, $14">
-                    <label for="seat-E10" class="seat gold" title="E10">10</label>
-                    <input type="checkbox" id="seat-E11" class="seat-check" data-price="14" aria-label="Seat E11, gold seat, $14">
-                    <label for="seat-E11" class="seat gold" title="E11">11</label>
-                    <input type="checkbox" id="seat-E12" class="seat-check" data-price="14" aria-label="Seat E12, gold seat, $14">
-                    <label for="seat-E12" class="seat gold" title="E12">12</label>
-                </div>
-
-                <div class="seat-row">
-                    <span class="row-label">F</span>
-                    <input type="checkbox" id="seat-F1" class="seat-check" data-price="14" aria-label="Seat F1, gold seat, $14">
-                    <label for="seat-F1" class="seat gold" title="F1">1</label>
-                    <input type="checkbox" id="seat-F2" class="seat-check" data-price="14" aria-label="Seat F2, gold seat, $14">
-                    <label for="seat-F2" class="seat gold" title="F2">2</label>
-                    <input type="checkbox" id="seat-F3" class="seat-check" data-price="14" aria-label="Seat F3, gold seat, $14">
-                    <label for="seat-F3" class="seat gold" title="F3">3</label>
-                    <input type="checkbox" id="seat-F4" class="seat-check" data-price="14" aria-label="Seat F4, gold seat, $14">
-                    <label for="seat-F4" class="seat gold" title="F4">4</label>
-                    <input type="checkbox" id="seat-F5" class="seat-check" data-price="14" aria-label="Seat F5, gold seat, $14">
-                    <label for="seat-F5" class="seat gold" title="F5">5</label>
-                    <input type="checkbox" id="seat-F6" class="seat-check" data-price="14" aria-label="Seat F6, gold seat, $14">
-                    <label for="seat-F6" class="seat gold" title="F6">6</label>
-                    <input type="checkbox" id="seat-F7" class="seat-check" disabled data-price="14" aria-label="Seat F7, already booked">
-                    <label for="seat-F7" class="seat occupied" style="margin-left:16px" title="F7">7</label>
-                    <input type="checkbox" id="seat-F8" class="seat-check" data-price="14" aria-label="Seat F8, gold seat, $14">
-                    <label for="seat-F8" class="seat gold" title="F8">8</label>
-                    <input type="checkbox" id="seat-F9" class="seat-check" data-price="14" aria-label="Seat F9, gold seat, $14">
-                    <label for="seat-F9" class="seat gold" title="F9">9</label>
-                    <input type="checkbox" id="seat-F10" class="seat-check" data-price="14" aria-label="Seat F10, gold seat, $14">
-                    <label for="seat-F10" class="seat gold" title="F10">10</label>
-                    <input type="checkbox" id="seat-F11" class="seat-check" data-price="14" aria-label="Seat F11, gold seat, $14">
-                    <label for="seat-F11" class="seat gold" title="F11">11</label>
-                    <input type="checkbox" id="seat-F12" class="seat-check" data-price="14" aria-label="Seat F12, gold seat, $14">
-                    <label for="seat-F12" class="seat gold" title="F12">12</label>
-                </div>
-
-                <div class="seat-row">
-                    <span class="row-label">G</span>
-                    <input type="checkbox" id="seat-G1" class="seat-check" data-price="18" aria-label="Seat G1, premium seat, $18">
-                    <label for="seat-G1" class="seat premium" title="G1">1</label>
-                    <input type="checkbox" id="seat-G2" class="seat-check" data-price="18" aria-label="Seat G2, premium seat, $18">
-                    <label for="seat-G2" class="seat premium" title="G2">2</label>
-                    <input type="checkbox" id="seat-G3" class="seat-check" disabled data-price="18" aria-label="Seat G3, already booked">
-                    <label for="seat-G3" class="seat occupied" title="G3">3</label>
-                    <input type="checkbox" id="seat-G4" class="seat-check" disabled data-price="18" aria-label="Seat G4, already booked">
-                    <label for="seat-G4" class="seat occupied" title="G4">4</label>
-                    <input type="checkbox" id="seat-G5" class="seat-check" data-price="18" aria-label="Seat G5, premium seat, $18">
-                    <label for="seat-G5" class="seat premium" title="G5">5</label>
-                    <input type="checkbox" id="seat-G6" class="seat-check" data-price="18" aria-label="Seat G6, premium seat, $18">
-                    <label for="seat-G6" class="seat premium" title="G6">6</label>
-                    <input type="checkbox" id="seat-G7" class="seat-check" data-price="18" aria-label="Seat G7, premium seat, $18">
-                    <label for="seat-G7" class="seat premium" style="margin-left:16px" title="G7">7</label>
-                    <input type="checkbox" id="seat-G8" class="seat-check" data-price="18" aria-label="Seat G8, premium seat, $18">
-                    <label for="seat-G8" class="seat premium" title="G8">8</label>
-                    <input type="checkbox" id="seat-G9" class="seat-check" data-price="18" aria-label="Seat G9, premium seat, $18">
-                    <label for="seat-G9" class="seat premium" title="G9">9</label>
-                    <input type="checkbox" id="seat-G10" class="seat-check" data-price="18" aria-label="Seat G10, premium seat, $18">
-                    <label for="seat-G10" class="seat premium" title="G10">10</label>
-                    <input type="checkbox" id="seat-G11" class="seat-check" data-price="18" aria-label="Seat G11, premium seat, $18">
-                    <label for="seat-G11" class="seat premium" title="G11">11</label>
-                    <input type="checkbox" id="seat-G12" class="seat-check" data-price="18" aria-label="Seat G12, premium seat, $18">
-                    <label for="seat-G12" class="seat premium" title="G12">12</label>
-                </div>
-
-                <div class="seat-row">
-                    <span class="row-label">H</span>
-                    <input type="checkbox" id="seat-H1" class="seat-check" data-price="18" aria-label="Seat H1, premium seat, $18">
-                    <label for="seat-H1" class="seat premium" title="H1">1</label>
-                    <input type="checkbox" id="seat-H2" class="seat-check" data-price="18" aria-label="Seat H2, premium seat, $18">
-                    <label for="seat-H2" class="seat premium" title="H2">2</label>
-                    <input type="checkbox" id="seat-H3" class="seat-check" data-price="18" aria-label="Seat H3, premium seat, $18">
-                    <label for="seat-H3" class="seat premium" title="H3">3</label>
-                    <input type="checkbox" id="seat-H4" class="seat-check" data-price="18" aria-label="Seat H4, premium seat, $18">
-                    <label for="seat-H4" class="seat premium" title="H4">4</label>
-                    <input type="checkbox" id="seat-H5" class="seat-check" data-price="18" aria-label="Seat H5, premium seat, $18">
-                    <label for="seat-H5" class="seat premium" title="H5">5</label>
-                    <input type="checkbox" id="seat-H6" class="seat-check" data-price="18" aria-label="Seat H6, premium seat, $18">
-                    <label for="seat-H6" class="seat premium" title="H6">6</label>
-                    <input type="checkbox" id="seat-H7" class="seat-check" data-price="18" aria-label="Seat H7, premium seat, $18">
-                    <label for="seat-H7" class="seat premium" style="margin-left:16px" title="H7">7</label>
-                    <input type="checkbox" id="seat-H8" class="seat-check" disabled data-price="18" aria-label="Seat H8, already booked">
-                    <label for="seat-H8" class="seat occupied" title="H8">8</label>
-                    <input type="checkbox" id="seat-H9" class="seat-check" disabled data-price="18" aria-label="Seat H9, already booked">
-                    <label for="seat-H9" class="seat occupied" title="H9">9</label>
-                    <input type="checkbox" id="seat-H10" class="seat-check" data-price="18" aria-label="Seat H10, premium seat, $18">
-                    <label for="seat-H10" class="seat premium" title="H10">10</label>
-                    <input type="checkbox" id="seat-H11" class="seat-check" data-price="18" aria-label="Seat H11, premium seat, $18">
-                    <label for="seat-H11" class="seat premium" title="H11">11</label>
-                    <input type="checkbox" id="seat-H12" class="seat-check" data-price="18" aria-label="Seat H12, premium seat, $18">
-                    <label for="seat-H12" class="seat premium" title="H12">12</label>
-                </div>
-
-                </div>
+                <div class="hall" id="hall"></div>
 
                 <div class="seat-legend">
-                    <div><span class="seat-sample available"></span> Available</div>
+                    <div><span class="seat-sample recliner"></span> Recliner</div>
+                    <div><span class="seat-sample premium"></span> Premium</div>
+                    <div><span class="seat-sample classic"></span> Classic</div>
                     <div><span class="seat-sample selected"></span> Selected</div>
                     <div><span class="seat-sample occupied"></span> Occupied</div>
-                    <div><span class="seat-sample premium-sample"></span> Premium</div>
+                </div>
+            </section>
+
+            <!-- 6. ADD-ONS -->
+            <section class="booking-section">
+                <h3>6. Food & Beverages (Optional)</h3>
+                <div class="addon-grid">
+                    <label class="addon-card">
+                        <input type="checkbox" class="addon-checkbox" data-name="Popcorn Combo" data-price="12.00" checked>
+                        <div class="addon-info">
+                            <strong>Large Popcorn Combo</strong>
+                            <p>1x Caramel Popcorn + 2 Pepsi</p>
+                            <span class="addon-price">+$12.00</span>
+                        </div>
+                    </label>
+                    <label class="addon-card">
+                        <input type="checkbox" class="addon-checkbox" data-name="Nachos & Cheese" data-price="8.00">
+                        <div class="addon-info">
+                            <strong>Nachos & Cheese</strong>
+                            <p>1x Large Nachos with dip</p>
+                            <span class="addon-price">+$8.00</span>
+                        </div>
+                    </label>
+                    <label class="addon-card">
+                        <input type="checkbox" class="addon-checkbox" data-name="Chilled Beverage" data-price="5.00">
+                        <div class="addon-info">
+                            <strong>Chilled Beverage</strong>
+                            <p>1x Regular soft drink</p>
+                            <span class="addon-price">+$5.00</span>
+                        </div>
+                    </label>
+                    <label class="addon-card">
+                        <input type="checkbox" class="addon-checkbox" data-name="Choco Lava Cake" data-price="6.50">
+                        <div class="addon-info">
+                            <strong>Choco Lava Cake</strong>
+                            <p>Warm, single serving</p>
+                            <span class="addon-price">+$6.50</span>
+                        </div>
+                    </label>
                 </div>
             </section>
         </div>
 
-        <!-- SUMMARY SIDEBAR -->
+        <!-- SIDEBAR SUMMARY -->
         <div class="booking-summary-card">
             <h3>Booking Summary</h3>
             <div class="summary-details">
-                <p><strong>Movie:</strong> Deadpool &amp; Wolverine</p>
-                <p><strong>Theater:</strong> PVR Director's Cut (Screen 3)</p>
-                <p><strong>Showtime:</strong> Fri, 12 Sep @ 07:30 PM</p>
-
+                <p><strong>Movie:</strong> <span id="summaryMovie">—</span></p>
+                <p><strong>Theater:</strong> <span id="summaryTheater">—</span></p>
+                <p><strong>Showtime:</strong> <span id="summaryShowtime">—</span></p>
+                <p><strong>Seats:</strong> <span id="summarySeats">None Selected</span></p>
                 <hr class="divider">
-
-                <p class="summary-label">Your seats</p>
-                <div class="summary-tags">
-                    <span class="summary-empty">None selected yet &mdash; tap a few seats.</span>
-
-                    <span class="tag t-A1">A1</span>
-                        <span class="tag t-A2">A2</span>
-                        <span class="tag t-A3">A3</span>
-                        <span class="tag t-A4">A4</span>
-                        <span class="tag t-A5">A5</span>
-                        <span class="tag t-A6">A6</span>
-                        <span class="tag t-A7">A7</span>
-                        <span class="tag t-A8">A8</span>
-                        <span class="tag t-A9">A9</span>
-                        <span class="tag t-A10">A10</span>
-                        <span class="tag t-A11">A11</span>
-                        <span class="tag t-A12">A12</span>
-                        <span class="tag t-B1">B1</span>
-                        <span class="tag t-B2">B2</span>
-                        <span class="tag t-B5">B5</span>
-                        <span class="tag t-B6">B6</span>
-                        <span class="tag t-B7">B7</span>
-                        <span class="tag t-B8">B8</span>
-                        <span class="tag t-B9">B9</span>
-                        <span class="tag t-B10">B10</span>
-                        <span class="tag t-B11">B11</span>
-                        <span class="tag t-B12">B12</span>
-                        <span class="tag t-C1">C1</span>
-                        <span class="tag t-C2">C2</span>
-                        <span class="tag t-C3">C3</span>
-                        <span class="tag t-C4">C4</span>
-                        <span class="tag t-C5">C5</span>
-                        <span class="tag t-C6">C6</span>
-                        <span class="tag t-C7">C7</span>
-                        <span class="tag t-C8">C8</span>
-                        <span class="tag t-C9">C9</span>
-                        <span class="tag t-C10">C10</span>
-                        <span class="tag t-C11">C11</span>
-                        <span class="tag t-C12">C12</span>
-                        <span class="tag t-D1">D1</span>
-                        <span class="tag t-D2">D2</span>
-                        <span class="tag t-D3">D3</span>
-                        <span class="tag t-D4">D4</span>
-                        <span class="tag t-D7">D7</span>
-                        <span class="tag t-D8">D8</span>
-                        <span class="tag t-D9">D9</span>
-                        <span class="tag t-D10">D10</span>
-                        <span class="tag t-D11">D11</span>
-                        <span class="tag t-E1">E1</span>
-                        <span class="tag t-E3">E3</span>
-                        <span class="tag t-E4">E4</span>
-                        <span class="tag t-E5">E5</span>
-                        <span class="tag t-E6">E6</span>
-                        <span class="tag t-E7">E7</span>
-                        <span class="tag t-E8">E8</span>
-                        <span class="tag t-E10">E10</span>
-                        <span class="tag t-E11">E11</span>
-                        <span class="tag t-E12">E12</span>
-                        <span class="tag t-F1">F1</span>
-                        <span class="tag t-F2">F2</span>
-                        <span class="tag t-F3">F3</span>
-                        <span class="tag t-F4">F4</span>
-                        <span class="tag t-F5">F5</span>
-                        <span class="tag t-F6">F6</span>
-                        <span class="tag t-F8">F8</span>
-                        <span class="tag t-F9">F9</span>
-                        <span class="tag t-F10">F10</span>
-                        <span class="tag t-F11">F11</span>
-                        <span class="tag t-F12">F12</span>
-                        <span class="tag t-G1">G1</span>
-                        <span class="tag t-G2">G2</span>
-                        <span class="tag t-G5">G5</span>
-                        <span class="tag t-G6">G6</span>
-                        <span class="tag t-G7">G7</span>
-                        <span class="tag t-G8">G8</span>
-                        <span class="tag t-G9">G9</span>
-                        <span class="tag t-G10">G10</span>
-                        <span class="tag t-G11">G11</span>
-                        <span class="tag t-G12">G12</span>
-                        <span class="tag t-H1">H1</span>
-                        <span class="tag t-H2">H2</span>
-                        <span class="tag t-H3">H3</span>
-                        <span class="tag t-H4">H4</span>
-                        <span class="tag t-H5">H5</span>
-                        <span class="tag t-H6">H6</span>
-                        <span class="tag t-H7">H7</span>
-                        <span class="tag t-H10">H10</span>
-                        <span class="tag t-H11">H11</span>
-                        <span class="tag t-H12">H12</span>
-
-                </div>
-
-                <hr class="divider">
-
-                <div id="summaryBreakdown">
-                    <p class="price-key">
-                        <span><span class="dot silver"></span>Silver</span><b>$10</b>
-                    </p>
-                    <p class="price-key">
-                        <span><span class="dot gold"></span>Gold</span><b>$14</b>
-                    </p>
-                    <p class="price-key">
-                        <span><span class="dot premium"></span>Premium</span><b>$18</b>
-                    </p>
-                </div>
-
+                <div id="summaryBreakdown"></div>
+                <div id="summaryAddons"></div>
                 <div class="price-row">
                     <span>Convenience Fee</span>
                     <span>$2.50</span>
                 </div>
                 <hr class="divider">
-                <p class="summary-note">Total is calculated on the payment step, based on the sections you pick.</p>
+                <div class="price-row total">
+                    <span>Total Amount</span>
+                    <span class="price" id="summaryTotal">$2.50</span>
+                </div>
             </div>
-            <a href="confirmation.html" class="btn btn-primary proceed-btn">Proceed to Pay &amp; Confirm</a>
+            <a href="confirmation.html" class="btn btn-primary proceed-btn disabled" id="proceedBtn">Select Seats to Continue</a>
         </div>
     </main>
 
-    <footer class="page-footer">
-        <p>Cinevia &middot; seat layout is illustrative for this build</p>
-    </footer>
+    <script src="movies.js"></script>
+    <script>
+        // ============================================================
+        // Theaters — three different hall sizes/personalities, each
+        // built from Classic / Premium / Recliner tiers.
+        // ============================================================
+        const THEATERS = {
+            imax: {
+                name: "Cinevia IMAX Grand",
+                screen: "Screen 1 · Laser IMAX",
+                basePrice: 11.00,
+                showtimes: [
+                    { time: "10:15 AM", format: "2D" },
+                    { time: "01:45 PM", format: "3D" },
+                    { time: "07:30 PM", format: "IMAX 3D" },
+                    { time: "10:45 PM", format: "IMAX 3D" }
+                ],
+                sections: [
+                    { tier: "classic", rows: 8, seatsPerSide: 11, priceMult: 1.0 },
+                    { tier: "premium", rows: 4, seatsPerSide: 9, priceMult: 1.4 },
+                    { tier: "recliner", rows: 2, seatsPerSide: 5, priceMult: 2.1 }
+                ]
+            },
+            prime: {
+                name: "Cinevia Prime",
+                screen: "Screen 4 · Dolby Atmos",
+                basePrice: 9.00,
+                showtimes: [
+                    { time: "11:00 AM", format: "2D" },
+                    { time: "02:30 PM", format: "3D" },
+                    { time: "06:15 PM", format: "3D" },
+                    { time: "09:45 PM", format: "4DX" }
+                ],
+                sections: [
+                    { tier: "classic", rows: 6, seatsPerSide: 9, priceMult: 1.0 },
+                    { tier: "premium", rows: 3, seatsPerSide: 7, priceMult: 1.35 },
+                    { tier: "recliner", rows: 1, seatsPerSide: 4, priceMult: 1.9 }
+                ]
+            },
+            lux: {
+                name: "Cinevia Lux",
+                screen: "Screen 7 · Boutique Suite",
+                basePrice: 13.00,
+                showtimes: [
+                    { time: "12:30 PM", format: "3D" },
+                    { time: "04:00 PM", format: "3D" },
+                    { time: "08:15 PM", format: "IMAX 3D" }
+                ],
+                sections: [
+                    { tier: "premium", rows: 2, seatsPerSide: 5, priceMult: 1.3 },
+                    { tier: "recliner", rows: 3, seatsPerSide: 6, priceMult: 1.8 }
+                ]
+            }
+        };
 
+        const TIER_LABELS = { classic: "Classic", premium: "Premium", recliner: "Recliner" };
+
+        // ============================================================
+        // State
+        // ============================================================
+        const state = {
+            selectedMovie: null,
+            selectedTheater: 'imax',
+            selectedDate: startOfDay(new Date()),
+            selectedShowtime: null,
+            selectedSeats: [],   // { id, tier, price }
+            selectedAddons: [],
+            calViewYear: new Date().getFullYear(),
+            calViewMonth: new Date().getMonth()
+        };
+
+        const minDate = startOfDay(new Date());
+        const maxDate = startOfDay(new Date());
+        maxDate.setDate(maxDate.getDate() + 13);
+
+        function startOfDay(d) { const c = new Date(d); c.setHours(0, 0, 0, 0); return c; }
+        function sameDay(a, b) { return a.getTime() === b.getTime(); }
+        function slugify(t) { return t.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
+
+        // Tiny seeded PRNG so occupied seats look random but stay put
+        // for the length of the session instead of reshuffling on every render.
+        function seededRandom(seed) {
+            let h = 2166136261;
+            for (let i = 0; i < seed.length; i++) {
+                h ^= seed.charCodeAt(i);
+                h = Math.imul(h, 16777619);
+            }
+            return ((h >>> 0) % 1000) / 1000;
+        }
+
+        // ============================================================
+        // DOM refs
+        // ============================================================
+        const movieSearch = document.getElementById('movieSearch');
+        const movieStrip = document.getElementById('movieStrip');
+        const movieCount = document.getElementById('movieCount');
+        const heroPoster = document.getElementById('heroPoster');
+        const heroTitle = document.getElementById('heroTitle');
+        const heroGenre = document.getElementById('heroGenre');
+        const heroDuration = document.getElementById('heroDuration');
+        const heroRating = document.getElementById('heroRating');
+        const theaterPicker = document.getElementById('theaterPicker');
+        const timePicker = document.getElementById('timePicker');
+        const hall = document.getElementById('hall');
+        const calMonthLabel = document.getElementById('calMonthLabel');
+        const calendarGrid = document.getElementById('calendarGrid');
+        const calPrev = document.getElementById('calPrev');
+        const calNext = document.getElementById('calNext');
+        const selectedDateLabel = document.getElementById('selectedDateLabel');
+        const summaryMovie = document.getElementById('summaryMovie');
+        const summaryTheater = document.getElementById('summaryTheater');
+        const summaryShowtime = document.getElementById('summaryShowtime');
+        const summarySeats = document.getElementById('summarySeats');
+        const summaryBreakdown = document.getElementById('summaryBreakdown');
+        const summaryAddons = document.getElementById('summaryAddons');
+        const summaryTotal = document.getElementById('summaryTotal');
+        const proceedBtn = document.getElementById('proceedBtn');
+
+        // ============================================================
+        // Movie picker
+        // ============================================================
+        function renderMovieStrip(filter) {
+            const q = (filter || '').toLowerCase().trim();
+            const list = q ? MOVIE_CATALOG.filter(m => m.title.toLowerCase().includes(q)) : MOVIE_CATALOG;
+            movieStrip.innerHTML = '';
+            list.forEach((movie) => {
+                const chip = document.createElement('div');
+                chip.className = `movie-chip ${state.selectedMovie && state.selectedMovie.slug === movie.slug ? 'active' : ''}`;
+                chip.innerHTML = `<img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                                   <div class="movie-chip-title">${movie.title}</div>`;
+                chip.addEventListener('click', () => selectMovie(movie, true));
+                movieStrip.appendChild(chip);
+            });
+            movieCount.textContent = q
+                ? `${list.length} of ${MOVIE_CATALOG.length} movies match "${filter}"`
+                : `${MOVIE_CATALOG.length} movies now showing`;
+        }
+
+        function selectMovie(movie, scrollTo) {
+            state.selectedMovie = movie;
+            heroPoster.src = movie.poster;
+            heroPoster.alt = movie.title;
+            heroTitle.textContent = movie.title;
+            heroGenre.textContent = movie.genre;
+            heroDuration.textContent = movie.duration;
+            heroRating.textContent = movie.rating;
+            renderMovieStrip(movieSearch.value);
+            if (scrollTo) {
+                const activeChip = movieStrip.querySelector('.movie-chip.active');
+                if (activeChip) activeChip.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+            }
+            updateSummary();
+        }
+
+        movieSearch.addEventListener('input', () => renderMovieStrip(movieSearch.value));
+
+        // ============================================================
+        // Theater picker
+        // ============================================================
+        function renderTheaters() {
+            theaterPicker.innerHTML = '';
+            Object.keys(THEATERS).forEach((key) => {
+                const t = THEATERS[key];
+                const capacity = t.sections.reduce((sum, s) => sum + s.rows * s.seatsPerSide * 2, 0);
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `theater-btn ${state.selectedTheater === key ? 'active' : ''}`;
+                btn.innerHTML = `<span class="theater-name">${t.name}</span>
+                                  <span class="theater-meta">${t.screen}</span>
+                                  <span class="theater-meta">From <strong>$${t.basePrice.toFixed(2)}</strong> · ${capacity} seats</span>`;
+                btn.addEventListener('click', () => {
+                    state.selectedTheater = key;
+                    state.selectedSeats = [];
+                    state.selectedShowtime = null;
+                    renderTheaters();
+                    renderShowtimes();
+                    renderHall();
+                    updateSummary();
+                });
+                theaterPicker.appendChild(btn);
+            });
+        }
+
+        // ============================================================
+        // Calendar
+        // ============================================================
+        function renderCalendar() {
+            const y = state.calViewYear, m = state.calViewMonth;
+            calMonthLabel.textContent = new Date(y, m, 1).toLocaleString('default', { month: 'long', year: 'numeric' });
+
+            calPrev.disabled = (y === minDate.getFullYear() && m === minDate.getMonth());
+            calNext.disabled = (y === maxDate.getFullYear() && m === maxDate.getMonth());
+
+            calendarGrid.innerHTML = '';
+            const firstWeekday = new Date(y, m, 1).getDay();
+            const totalDays = new Date(y, m + 1, 0).getDate();
+
+            for (let i = 0; i < firstWeekday; i++) {
+                const filler = document.createElement('span');
+                filler.className = 'cal-day empty';
+                calendarGrid.appendChild(filler);
+            }
+
+            for (let d = 1; d <= totalDays; d++) {
+                const dateObj = startOfDay(new Date(y, m, d));
+                const disabled = dateObj < minDate || dateObj > maxDate;
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'cal-day';
+                if (disabled) btn.classList.add('disabled');
+                if (sameDay(dateObj, startOfDay(new Date()))) btn.classList.add('today');
+                if (sameDay(dateObj, state.selectedDate)) btn.classList.add('selected');
+                btn.textContent = d;
+                if (!disabled) {
+                    btn.addEventListener('click', () => {
+                        state.selectedDate = dateObj;
+                        renderCalendar();
+                        updateSummary();
+                    });
+                }
+                calendarGrid.appendChild(btn);
+            }
+
+            selectedDateLabel.innerHTML = `Booking for <strong>${state.selectedDate.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })}</strong>`;
+        }
+
+        calPrev.addEventListener('click', () => {
+            state.calViewMonth -= 1;
+            if (state.calViewMonth < 0) { state.calViewMonth = 11; state.calViewYear -= 1; }
+            renderCalendar();
+        });
+        calNext.addEventListener('click', () => {
+            state.calViewMonth += 1;
+            if (state.calViewMonth > 11) { state.calViewMonth = 0; state.calViewYear += 1; }
+            renderCalendar();
+        });
+
+        // ============================================================
+        // Showtimes
+        // ============================================================
+        function renderShowtimes() {
+            timePicker.innerHTML = '';
+            const showtimes = THEATERS[state.selectedTheater].showtimes;
+            if (!state.selectedShowtime || !showtimes.some(s => s.time === state.selectedShowtime.time)) {
+                state.selectedShowtime = showtimes[0];
+            }
+            showtimes.forEach((st) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                const active = state.selectedShowtime && state.selectedShowtime.time === st.time;
+                btn.className = `time-btn ${active ? 'active' : ''}`;
+                btn.innerHTML = `${st.time} <span class="format">${st.format}</span>`;
+                btn.addEventListener('click', () => {
+                    state.selectedShowtime = st;
+                    renderShowtimes();
+                    updateSummary();
+                });
+                timePicker.appendChild(btn);
+            });
+        }
+
+        // ============================================================
+        // Big hall seat map
+        // ============================================================
+        function renderHall() {
+            hall.innerHTML = '';
+            const theater = THEATERS[state.selectedTheater];
+            let rowCharCode = 65; // 'A'
+
+            theater.sections.forEach((section) => {
+                const price = Math.round(theater.basePrice * section.priceMult * 100) / 100;
+
+                const block = document.createElement('div');
+                block.className = 'tier-block';
+
+                const label = document.createElement('div');
+                label.className = 'tier-label';
+                label.innerHTML = `<span class="dot" style="background:${tierColor(section.tier)}"></span>
+                                    ${TIER_LABELS[section.tier]}
+                                    <hr>
+                                    <span class="price">$${price.toFixed(2)} / seat</span>`;
+                block.appendChild(label);
+
+                for (let r = 0; r < section.rows; r++) {
+                    const rowLetter = String.fromCharCode(rowCharCode++);
+                    const rowDiv = document.createElement('div');
+                    rowDiv.className = 'seat-row';
+
+                    const rowLabel = document.createElement('span');
+                    rowLabel.className = 'row-label';
+                    rowLabel.textContent = rowLetter;
+                    rowDiv.appendChild(rowLabel);
+
+                    const totalSeats = section.seatsPerSide * 2;
+                    for (let n = 1; n <= totalSeats; n++) {
+                        if (n === section.seatsPerSide + 1) {
+                            const gap = document.createElement('span');
+                            gap.className = 'seat aisle-gap';
+                            rowDiv.appendChild(gap);
+                        }
+                        const seatId = `${rowLetter}${n}`;
+                        const occupied = seededRandom(`${state.selectedTheater}-${seatId}`) < 0.22;
+                        const isSelected = state.selectedSeats.some(s => s.id === seatId);
+
+                        const btn = document.createElement('button');
+                        btn.type = 'button';
+                        btn.className = `seat tier-${section.tier} ${occupied ? 'occupied' : ''} ${isSelected ? 'selected' : ''}`;
+                        btn.textContent = seatId;
+                        if (!occupied) {
+                            btn.addEventListener('click', () => {
+                                const idx = state.selectedSeats.findIndex(s => s.id === seatId);
+                                if (idx >= 0) {
+                                    state.selectedSeats.splice(idx, 1);
+                                } else {
+                                    state.selectedSeats.push({ id: seatId, tier: section.tier, price });
+                                }
+                                renderHall();
+                                updateSummary();
+                            });
+                        }
+                        rowDiv.appendChild(btn);
+                    }
+                    block.appendChild(rowDiv);
+                }
+                hall.appendChild(block);
+            });
+        }
+
+        function tierColor(tier) {
+            return tier === 'recliner' ? 'var(--gold)' : tier === 'premium' ? 'var(--cyan)' : 'var(--line-soft)';
+        }
+
+        // ============================================================
+        // Add-ons
+        // ============================================================
+        document.querySelectorAll('.addon-checkbox').forEach((checkbox) => {
+            const handle = () => {
+                const name = checkbox.getAttribute('data-name');
+                const price = parseFloat(checkbox.getAttribute('data-price'));
+                if (checkbox.checked) {
+                    if (!state.selectedAddons.some(a => a.name === name)) state.selectedAddons.push({ name, price });
+                } else {
+                    state.selectedAddons = state.selectedAddons.filter(a => a.name !== name);
+                }
+                updateSummary();
+            };
+            checkbox.addEventListener('change', handle);
+            if (checkbox.checked) handle();
+        });
+
+        // ============================================================
+        // Summary
+        // ============================================================
+        function updateSummary() {
+            const theater = THEATERS[state.selectedTheater];
+            summaryMovie.textContent = state.selectedMovie ? state.selectedMovie.title : '—';
+            summaryTheater.textContent = `${theater.name} (${theater.screen})`;
+            summaryShowtime.textContent = `${state.selectedDate.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short' })} @ ${state.selectedShowtime ? state.selectedShowtime.time : ''}`;
+
+            if (state.selectedSeats.length > 0) {
+                const ids = state.selectedSeats.map(s => s.id).sort();
+                summarySeats.textContent = `${ids.join(', ')} (${ids.length} Ticket${ids.length > 1 ? 's' : ''})`;
+            } else {
+                summarySeats.textContent = 'None Selected';
+            }
+
+            // Breakdown by tier
+            summaryBreakdown.innerHTML = '';
+            let ticketTotal = 0;
+            ['recliner', 'premium', 'classic'].forEach((tier) => {
+                const seatsOfTier = state.selectedSeats.filter(s => s.tier === tier);
+                if (seatsOfTier.length === 0) return;
+                const subtotal = seatsOfTier.reduce((sum, s) => sum + s.price, 0);
+                ticketTotal += subtotal;
+                const row = document.createElement('div');
+                row.className = 'price-row';
+                row.innerHTML = `<span>${TIER_LABELS[tier]} x${seatsOfTier.length}</span><span>$${subtotal.toFixed(2)}</span>`;
+                summaryBreakdown.appendChild(row);
+            });
+            if (state.selectedSeats.length === 0) {
+                const row = document.createElement('div');
+                row.className = 'price-row';
+                row.innerHTML = `<span>Tickets</span><span>$0.00</span>`;
+                summaryBreakdown.appendChild(row);
+            }
+
+            // Add-ons
+            summaryAddons.innerHTML = '';
+            let addonTotal = 0;
+            state.selectedAddons.forEach((addon) => {
+                addonTotal += addon.price;
+                const row = document.createElement('div');
+                row.className = 'price-row';
+                row.innerHTML = `<span>${addon.name}</span><span>+$${addon.price.toFixed(2)}</span>`;
+                summaryAddons.appendChild(row);
+            });
+
+            const convenienceFee = 2.50;
+            const total = ticketTotal + addonTotal + convenienceFee;
+            summaryTotal.textContent = `$${total.toFixed(2)}`;
+
+            // Enable/disable proceed
+            if (state.selectedSeats.length > 0) {
+                proceedBtn.classList.remove('disabled');
+                proceedBtn.textContent = `Proceed to Pay & Confirm`;
+            } else {
+                proceedBtn.classList.add('disabled');
+                proceedBtn.textContent = 'Select Seats to Continue';
+            }
+
+            proceedBtn.dataset.total = total.toFixed(2);
+        }
+
+        proceedBtn.addEventListener('click', (e) => {
+            if (state.selectedSeats.length === 0) { e.preventDefault(); return; }
+            const theater = THEATERS[state.selectedTheater];
+            const bookingData = {
+                movie: state.selectedMovie.title,
+                poster: state.selectedMovie.poster,
+                theaterName: theater.name,
+                screen: theater.screen,
+                date: state.selectedDate.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }),
+                time: state.selectedShowtime ? state.selectedShowtime.time : '',
+                format: state.selectedShowtime ? state.selectedShowtime.format : '2D',
+                seats: state.selectedSeats.map(s => s.id),
+                seatBreakdown: ['recliner', 'premium', 'classic'].map(tier => {
+                    const seatsOfTier = state.selectedSeats.filter(s => s.tier === tier);
+                    return seatsOfTier.length ? { tier: TIER_LABELS[tier], count: seatsOfTier.length, subtotal: seatsOfTier.reduce((s, x) => s + x.price, 0) } : null;
+                }).filter(Boolean),
+                addons: state.selectedAddons,
+                totalPrice: parseFloat(proceedBtn.dataset.total)
+            };
+            localStorage.setItem('movieBookingData', JSON.stringify(bookingData));
+        });
+
+        // ============================================================
+        // Init
+        // ============================================================
+        (function init() {
+            const params = new URLSearchParams(window.location.search);
+            const requestedSlug = params.get('movie');
+            const initialMovie = (requestedSlug && MOVIE_CATALOG.find(m => m.slug === requestedSlug)) || MOVIE_CATALOG[0];
+
+            renderMovieStrip('');
+            selectMovie(initialMovie, true);
+            renderTheaters();
+            renderCalendar();
+            renderShowtimes();
+            renderHall();
+            updateSummary();
+        })();
+    </script>
 </body>
 </html>
