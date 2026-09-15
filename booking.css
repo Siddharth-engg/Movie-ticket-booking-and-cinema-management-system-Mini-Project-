@@ -1,0 +1,307 @@
+/* ============================================================
+   booking.css — Cinevia seat selection page
+   Built by Siddharth Singh.
+
+   This file only ADDS to confirmation.css (linked before this
+   one) so the whole site shares one visual language. Nothing
+   here overrides confirmation.css's base tokens.
+
+   Seat selection and the live summary panel are done purely in
+   CSS: a hidden checkbox per seat, a <label> that represents it
+   visually, and the :has() relational selector to reach the
+   summary sidebar from anywhere in the seat grid. No JS.
+   ============================================================ */
+
+/* ---------- showtime context strip ---------- */
+
+.show-context {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.show-context__poster {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: linear-gradient(160deg, #e50914, #7a0a11);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.show-context h1 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 4px;
+}
+
+.badge {
+    background: #e50914;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.show-context__meta {
+    margin: 2px 0;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+/* ---------- seat grid: hide the real checkbox, style the label ---------- */
+
+.seat-check {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.seat-row {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.seat {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+    color: #888;
+    user-select: none;
+}
+
+/* category outlines, available state only */
+.seat.silver { border-color: #6b7280; }
+.seat.gold { border-color: #c99a3d; }
+.seat.premium { border-color: #c99a3d; box-shadow: inset 0 0 0 1px rgba(201, 154, 61, 0.25); }
+
+.seat:hover {
+    background: #22222f;
+    color: #fff;
+}
+
+/* selected state, driven by the hidden checkbox next to it */
+.seat-check:checked + .seat {
+    background: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+.seat-check:focus-visible + .seat {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.seat-check:disabled + .seat {
+    pointer-events: none;
+}
+
+.premium-sample {
+    box-shadow: inset 0 0 0 1px rgba(201, 154, 61, 0.25);
+    background: #181824;
+    border: 1px solid #c99a3d !important;
+}
+
+/* ---------- live summary: seat tags ---------- */
+
+.summary-label {
+    font-size: 11px;
+    color: #777;
+    margin: 10px 0 8px;
+}
+
+.summary-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-height: 26px;
+}
+
+.summary-empty {
+    font-size: 12px;
+    color: #666;
+}
+
+.tag {
+    display: none;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 600;
+    background: #1a1a2a;
+    border: 1px solid #e50914;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 100px;
+}
+
+/* ---------- price key rows ---------- */
+
+.price-key {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 6px;
+}
+
+.dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+    background: #6b7280;
+}
+
+.dot.gold, .dot.premium { background: #c99a3d; }
+
+.summary-note {
+    font-size: 11px;
+    color: #666;
+    margin: 10px 0 0;
+}
+
+/* ---------- proceed button: dim until a seat is picked ---------- */
+
+.proceed-btn {
+    opacity: 0.5;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+/* the relational trick: reach the sidebar from any checked seat,
+   no matter how deep it's nested in the seat grid */
+.booking-layout:has(.seat-check:checked) .summary-empty {
+    display: none;
+}
+
+.booking-layout:has(.seat-check:checked) .proceed-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ---------- footer ---------- */
+
+.page-footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 850px) {
+    .seat {
+        width: 24px;
+        height: 24px;
+        font-size: 9px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .proceed-btn {
+        transition: none;
+    }
+}
+
+/* ============================================================
+   Auto-generated: per-seat reveal rules for the summary tags
+   ============================================================ */
+
+.booking-layout:has(#seat-A1:checked) .t-A1 { display:inline-flex; }
+.booking-layout:has(#seat-A2:checked) .t-A2 { display:inline-flex; }
+.booking-layout:has(#seat-A3:checked) .t-A3 { display:inline-flex; }
+.booking-layout:has(#seat-A4:checked) .t-A4 { display:inline-flex; }
+.booking-layout:has(#seat-A5:checked) .t-A5 { display:inline-flex; }
+.booking-layout:has(#seat-A6:checked) .t-A6 { display:inline-flex; }
+.booking-layout:has(#seat-A7:checked) .t-A7 { display:inline-flex; }
+.booking-layout:has(#seat-A8:checked) .t-A8 { display:inline-flex; }
+.booking-layout:has(#seat-A9:checked) .t-A9 { display:inline-flex; }
+.booking-layout:has(#seat-A10:checked) .t-A10 { display:inline-flex; }
+.booking-layout:has(#seat-A11:checked) .t-A11 { display:inline-flex; }
+.booking-layout:has(#seat-A12:checked) .t-A12 { display:inline-flex; }
+.booking-layout:has(#seat-B1:checked) .t-B1 { display:inline-flex; }
+.booking-layout:has(#seat-B2:checked) .t-B2 { display:inline-flex; }
+.booking-layout:has(#seat-B5:checked) .t-B5 { display:inline-flex; }
+.booking-layout:has(#seat-B6:checked) .t-B6 { display:inline-flex; }
+.booking-layout:has(#seat-B7:checked) .t-B7 { display:inline-flex; }
+.booking-layout:has(#seat-B8:checked) .t-B8 { display:inline-flex; }
+.booking-layout:has(#seat-B9:checked) .t-B9 { display:inline-flex; }
+.booking-layout:has(#seat-B10:checked) .t-B10 { display:inline-flex; }
+.booking-layout:has(#seat-B11:checked) .t-B11 { display:inline-flex; }
+.booking-layout:has(#seat-B12:checked) .t-B12 { display:inline-flex; }
+.booking-layout:has(#seat-C1:checked) .t-C1 { display:inline-flex; }
+.booking-layout:has(#seat-C2:checked) .t-C2 { display:inline-flex; }
+.booking-layout:has(#seat-C3:checked) .t-C3 { display:inline-flex; }
+.booking-layout:has(#seat-C4:checked) .t-C4 { display:inline-flex; }
+.booking-layout:has(#seat-C5:checked) .t-C5 { display:inline-flex; }
+.booking-layout:has(#seat-C6:checked) .t-C6 { display:inline-flex; }
+.booking-layout:has(#seat-C7:checked) .t-C7 { display:inline-flex; }
+.booking-layout:has(#seat-C8:checked) .t-C8 { display:inline-flex; }
+.booking-layout:has(#seat-C9:checked) .t-C9 { display:inline-flex; }
+.booking-layout:has(#seat-C10:checked) .t-C10 { display:inline-flex; }
+.booking-layout:has(#seat-C11:checked) .t-C11 { display:inline-flex; }
+.booking-layout:has(#seat-C12:checked) .t-C12 { display:inline-flex; }
+.booking-layout:has(#seat-D1:checked) .t-D1 { display:inline-flex; }
+.booking-layout:has(#seat-D2:checked) .t-D2 { display:inline-flex; }
+.booking-layout:has(#seat-D3:checked) .t-D3 { display:inline-flex; }
+.booking-layout:has(#seat-D4:checked) .t-D4 { display:inline-flex; }
+.booking-layout:has(#seat-D7:checked) .t-D7 { display:inline-flex; }
+.booking-layout:has(#seat-D8:checked) .t-D8 { display:inline-flex; }
+.booking-layout:has(#seat-D9:checked) .t-D9 { display:inline-flex; }
+.booking-layout:has(#seat-D10:checked) .t-D10 { display:inline-flex; }
+.booking-layout:has(#seat-D11:checked) .t-D11 { display:inline-flex; }
+.booking-layout:has(#seat-E1:checked) .t-E1 { display:inline-flex; }
+.booking-layout:has(#seat-E3:checked) .t-E3 { display:inline-flex; }
+.booking-layout:has(#seat-E4:checked) .t-E4 { display:inline-flex; }
+.booking-layout:has(#seat-E5:checked) .t-E5 { display:inline-flex; }
+.booking-layout:has(#seat-E6:checked) .t-E6 { display:inline-flex; }
+.booking-layout:has(#seat-E7:checked) .t-E7 { display:inline-flex; }
+.booking-layout:has(#seat-E8:checked) .t-E8 { display:inline-flex; }
+.booking-layout:has(#seat-E10:checked) .t-E10 { display:inline-flex; }
+.booking-layout:has(#seat-E11:checked) .t-E11 { display:inline-flex; }
+.booking-layout:has(#seat-E12:checked) .t-E12 { display:inline-flex; }
+.booking-layout:has(#seat-F1:checked) .t-F1 { display:inline-flex; }
+.booking-layout:has(#seat-F2:checked) .t-F2 { display:inline-flex; }
+.booking-layout:has(#seat-F3:checked) .t-F3 { display:inline-flex; }
+.booking-layout:has(#seat-F4:checked) .t-F4 { display:inline-flex; }
+.booking-layout:has(#seat-F5:checked) .t-F5 { display:inline-flex; }
+.booking-layout:has(#seat-F6:checked) .t-F6 { display:inline-flex; }
+.booking-layout:has(#seat-F8:checked) .t-F8 { display:inline-flex; }
+.booking-layout:has(#seat-F9:checked) .t-F9 { display:inline-flex; }
+.booking-layout:has(#seat-F10:checked) .t-F10 { display:inline-flex; }
+.booking-layout:has(#seat-F11:checked) .t-F11 { display:inline-flex; }
+.booking-layout:has(#seat-F12:checked) .t-F12 { display:inline-flex; }
+.booking-layout:has(#seat-G1:checked) .t-G1 { display:inline-flex; }
+.booking-layout:has(#seat-G2:checked) .t-G2 { display:inline-flex; }
+.booking-layout:has(#seat-G5:checked) .t-G5 { display:inline-flex; }
+.booking-layout:has(#seat-G6:checked) .t-G6 { display:inline-flex; }
+.booking-layout:has(#seat-G7:checked) .t-G7 { display:inline-flex; }
+.booking-layout:has(#seat-G8:checked) .t-G8 { display:inline-flex; }
+.booking-layout:has(#seat-G9:checked) .t-G9 { display:inline-flex; }
+.booking-layout:has(#seat-G10:checked) .t-G10 { display:inline-flex; }
+.booking-layout:has(#seat-G11:checked) .t-G11 { display:inline-flex; }
+.booking-layout:has(#seat-G12:checked) .t-G12 { display:inline-flex; }
+.booking-layout:has(#seat-H1:checked) .t-H1 { display:inline-flex; }
+.booking-layout:has(#seat-H2:checked) .t-H2 { display:inline-flex; }
+.booking-layout:has(#seat-H3:checked) .t-H3 { display:inline-flex; }
+.booking-layout:has(#seat-H4:checked) .t-H4 { display:inline-flex; }
+.booking-layout:has(#seat-H5:checked) .t-H5 { display:inline-flex; }
+.booking-layout:has(#seat-H6:checked) .t-H6 { display:inline-flex; }
+.booking-layout:has(#seat-H7:checked) .t-H7 { display:inline-flex; }
+.booking-layout:has(#seat-H10:checked) .t-H10 { display:inline-flex; }
+.booking-layout:has(#seat-H11:checked) .t-H11 { display:inline-flex; }
+.booking-layout:has(#seat-H12:checked) .t-H12 { display:inline-flex; }
