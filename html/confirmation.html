@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieHub - Ticket Confirmation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/confirmation.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            🎬 <span>Movie</span>Hub
+        </div>
+        <a href="index.html" class="back-home">← Back to Home</a>
+    </header>
+
+    <main class="confirmation-container">
+        <div class="success-banner">
+            <div class="check-icon">✓</div>
+            <h1>Booking Confirmed!</h1>
+            <p>Your ticket and invoice details have been emailed to you.</p>
+        </div>
+
+        <!-- TICKET CARD -->
+        <div class="ticket-card" id="printableTicket">
+            <div class="ticket-header">
+                <h2 id="ticketMovie">Deadpool & Wolverine</h2>
+                <span class="badge" id="ticketFormat">IMAX 3D</span>
+            </div>
+
+            <div class="ticket-body">
+                <div class="poster-wrapper">
+                    <img src="../photo/Movie Theatre.png" alt="Movie Poster" class="movie-poster">
+                </div>
+
+                <div class="ticket-details">
+                    <div class="detail-row">
+                        <div class="detail-item">
+                            <span class="label">Date & Time</span>
+                            <span class="value" id="ticketDate">Fri, 12 Sep 2026</span>
+                            <span class="time-tag" id="ticketTime">07:30 PM</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Theater & Screen</span>
+                            <span class="value" id="ticketTheater">PVR Directors Cut</span>
+                            <span class="sub-value" id="ticketScreen">Screen 3</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-item">
+                            <span class="label">Reserved Seats</span>
+                            <span class="valueHighlight" id="ticketSeats">E12, E13 (2 Seats)</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Booking ID</span>
+                            <span class="value" id="ticketBookingId">#MH-8923401</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-item">
+                            <span class="label">Add-ons</span>
+                            <span class="sub-value" id="ticketAddons">None</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Total Paid</span>
+                            <span class="price" id="ticketTotalPrice">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticket-footer">
+                <div class="qr-box">
+                    <svg viewBox="0 0 100 100" width="85" height="85">
+                        <path fill="#000" d="M0,0 h30 v30 h-30 z M10,10 v10 h10 v-10 z M40,0 h10 v10 h-10 z M60,0 h10 v10 h-10 z M70,0 h30 v30 h-30 z M80,10 v10 h10 v-10 z M0,40 h10 v10 h-10 z M20,40 h20 v10 h-20 z M50,40 h10 v20 h-10 z M70,40 h10 v10 h-10 z M90,40 h10 v10 h-10 z M0,60 h10 v10 h-10 z M20,60 h10 v20 h-10 z M40,60 h20 v10 h-20 z M70,60 h30 v10 h-30 z M0,70 h30 v30 h-30 z M10,80 v10 h10 v-10 z M40,80 h10 v20 h-10 z M60,80 h20 v10 h-20 z M90,80 h10 v20 h-10 z"/>
+                    </svg>
+                </div>
+                <div class="qr-text">
+                    <h3>Entry QR Code Pass</h3>
+                    <p>Show this code at the cinema gate for instant entry. Snacks will be served to your seat.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="action-buttons">
+            <a href="#" download="MovieTicket.pdf" id="downloadPdfBtn" class="btn btn-primary">📄 Download PDF Ticket</a>
+            <button onclick="window.print()" class="btn btn-secondary">🖨️ Print Ticket</button>
+            <a href="#" id="calendarBtn" target="_blank" rel="noopener noreferrer" class="btn btn-outline">📅 Add to Calendar</a>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Retrieve booking state from localStorage
+            const storedData = localStorage.getItem('movieBookingData');
+            
+            if (storedData) {
+                const booking = JSON.parse(storedData);
+
+                // Update Ticket Elements
+                if (booking.movie) document.getElementById('ticketMovie').textContent = booking.movie;
+                if (booking.format) document.getElementById('ticketFormat').textContent = booking.format;
+                if (booking.date) document.getElementById('ticketDate').textContent = booking.date;
+                if (booking.time) document.getElementById('ticketTime').textContent = booking.time;
+                if (booking.theaterName) document.getElementById('ticketTheater').textContent = booking.theaterName;
+                if (booking.screen) document.getElementById('ticketScreen').textContent = booking.screen;
+                
+                // Seats
+                if (booking.seats && booking.seats.length > 0) {
+                    document.getElementById('ticketSeats').textContent = `${booking.seats.join(', ')} (${booking.seats.length} Seat${booking.seats.length > 1 ? 's' : ''})`;
+                } else {
+                    document.getElementById('ticketSeats').textContent = 'No seats selected';
+                }
+
+                // Add-ons
+                if (booking.addons && booking.addons.length > 0) {
+                    const addonNames = booking.addons.map(a => a.name).join(', ');
+                    document.getElementById('ticketAddons').textContent = addonNames;
+                } else {
+                    document.getElementById('ticketAddons').textContent = 'None';
+                }
+
+                // Total Price
+                if (booking.totalPrice) {
+                    document.getElementById('ticketTotalPrice').textContent = `$${parseFloat(booking.totalPrice).toFixed(2)}`;
+                }
+
+                // Generate Random Booking ID if not preset
+                const bookingId = booking.bookingId || `#MH-${Math.floor(1000000 + Math.random() * 9000000)}`;
+                document.getElementById('ticketBookingId').textContent = bookingId;
+
+                // Dynamic Google Calendar URL
+                const calendarBtn = document.getElementById('calendarBtn');
+                const eventTitle = encodeURIComponent(booking.movie || 'Movie Ticket');
+                const eventDetails = encodeURIComponent(`Booking ID: ${bookingId}\nSeats: ${booking.seats ? booking.seats.join(', ') : 'N/A'}`);
+                const eventLocation = encodeURIComponent(`${booking.theaterName || 'Cinema'}, ${booking.screen || ''}`);
+                
+                // Default date fallback calculation
+                calendarBtn.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&details=${eventDetails}&location=${eventLocation}`;
+            }
+        });
+    </script>
+</body>
+</html>
