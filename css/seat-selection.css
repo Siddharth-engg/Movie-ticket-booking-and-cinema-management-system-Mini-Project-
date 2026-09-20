@@ -1,0 +1,488 @@
+/* BASIC SETTINGS  */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #10151c;
+    color: #f5f1e8;
+}
+
+
+/* == HEADER == */
+
+.header {
+    height: 70px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #151c24;
+    border-bottom: 1px solid #28313b;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #e8b04a;
+}
+
+.back-link {
+    color: #c9ced3;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-link:hover {
+    color: #e8b04a;
+}
+
+
+/*  MAIN PAGE == */
+
+.seat-page {
+    width: 88%;
+    max-width: 1250px;
+    margin: 45px auto;
+
+    display: grid;
+    grid-template-columns: 210px 1fr 270px;
+    gap: 35px;
+}
+
+
+/*  MOVIE INFORMATION  */
+
+.movie-info {
+    padding-top: 10px;
+}
+
+.small-heading {
+    color: #e8b04a;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.movie-info h1 {
+    font-size: 34px;
+    margin-bottom: 5px;
+}
+
+.movie-type {
+    color: #aeb5bd;
+    font-size: 14px;
+}
+
+.show-details {
+    margin-top: 35px;
+}
+
+.show-details div {
+    margin-bottom: 22px;
+}
+
+.show-details span {
+    display: block;
+    color: #7f8993;
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+.show-details strong {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* ============ SEAT SECTION ================= */
+
+.seat-section {
+    background: #151c24;
+    border: 1px solid #28313b;
+    border-radius: 12px;
+    padding: 30px 25px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.section-title p {
+    color: #8f98a1;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+
+/* ================= SCREEN ========== */
+
+.screen-area {
+    width: 75%;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.screen {
+    height: 12px;
+
+    border-top: 3px solid #e8b04a;
+    border-radius: 50%;
+
+    box-shadow: 0 -5px 18px rgba(232, 176, 74, 0.20);
+}
+
+.screen-area p {
+    color: #7f8993;
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-top: 8px;
+}
+
+
+/* ================= SEAT ROW ======= */
+
+.seat-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.seat-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.row-name {
+    width: 18px;
+    color: #7f8993;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* ================= SEATS ================= */
+
+.seat {
+    width: 38px;
+    height: 32px;
+
+    border: 1px solid #39434e;
+    border-radius: 6px;
+
+    background: #222b35;
+    color: #d8dde1;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+/* Available seat hover */
+
+.seat.available:hover {
+    border-color: #e8b04a;
+    color: #e8b04a;
+    transform: translateY(-2px);
+}
+
+
+/* Selected seat */
+
+.seat.selected {
+    background: #e8b04a;
+    border-color: #e8b04a;
+    color: #151515;
+    font-weight: 600;
+}
+
+
+/* Booked seat */
+
+.seat.booked {
+    background: #3b4249;
+    border-color: #3b4249;
+    color: #737b83;
+    cursor: not-allowed;
+}
+
+
+/* Space between seat groups */
+
+.aisle {
+    width: 20px;
+}
+
+
+/* ========== LEGEND ================= */
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+
+    margin-top: 35px;
+    padding-top: 22px;
+
+    border-top: 1px solid #28313b;
+}
+
+.legend div {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    color: #9da5ad;
+    font-size: 11px;
+}
+
+.legend-box {
+    width: 13px;
+    height: 13px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.available-box {
+    background: #222b35;
+    border: 1px solid #39434e;
+}
+
+.selected-box {
+    background: #e8b04a;
+}
+
+.booked-box {
+    background: #3b4249;
+}
+
+
+/* ================= BOOKING SUMMARY ================= */
+
+.summary {
+    background: #151c24;
+    border: 1px solid #28313b;
+    border-radius: 12px;
+    padding: 25px;
+
+    height: fit-content;
+}
+
+.summary h2 {
+    font-size: 19px;
+    margin-bottom: 22px;
+}
+
+.summary-movie {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #28313b;
+}
+
+.summary-movie h3 {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.summary-movie p {
+    color: #8f98a1;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+/* Selected seat information */
+
+.selected-info {
+    padding: 20px 0;
+}
+
+.selected-info > span {
+    color: #8f98a1;
+    font-size: 12px;
+}
+
+.selected-seats {
+    display: flex;
+    gap: 7px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.selected-seats span {
+    background: #332d20;
+    color: #e8b04a;
+
+    padding: 5px 10px;
+    border-radius: 5px;
+
+    font-size: 11px;
+}
+
+
+/* Price */
+
+.price-details {
+    border-top: 1px solid #28313b;
+    padding-top: 17px;
+}
+
+.price-details div {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+
+    color: #969fa8;
+    font-size: 12px;
+}
+
+.price-details strong {
+    color: #e2e5e8;
+    font-weight: 500;
+}
+
+
+/* Total */
+
+.total {
+    border-top: 1px solid #28313b;
+
+    margin-top: 5px;
+    padding-top: 18px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total span {
+    font-size: 13px;
+    color: #c4c9ce;
+}
+
+.total strong {
+    color: #e8b04a;
+    font-size: 21px;
+}
+
+
+/* Continue button */
+
+.continue-btn {
+    width: 100%;
+    margin-top: 22px;
+    padding: 12px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #e8b04a;
+    color: #171717;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.continue-btn:hover {
+    background: #f0bd5e;
+}
+
+
+/* Small note */
+
+.note {
+    color: #707983;
+    font-size: 10px;
+    text-align: center;
+    margin-top: 12px;
+}
+
+
+/* ===== RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+
+    .seat-page {
+        grid-template-columns: 1fr;
+    }
+
+    .movie-info {
+        text-align: center;
+    }
+
+    .show-details {
+        display: flex;
+        justify-content: center;
+        gap: 35px;
+        margin-top: 20px;
+    }
+
+    .show-details div {
+        margin-bottom: 0;
+    }
+
+    .summary {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .header {
+        padding: 0 5%;
+    }
+
+    .seat-page {
+        width: 94%;
+        margin: 25px auto;
+    }
+
+    .seat-section {
+        padding: 25px 10px;
+    }
+
+    .show-details {
+        gap: 15px;
+    }
+
+    .seat-row {
+        gap: 5px;
+    }
+
+    .seat {
+        width: 32px;
+        height: 29px;
+        font-size: 9px;
+    }
+
+    .aisle {
+        width: 10px;
+    }
+
+    .legend {
+        gap: 12px;
+    }
+
+}
