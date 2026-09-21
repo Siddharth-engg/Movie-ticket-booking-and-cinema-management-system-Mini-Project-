@@ -25,7 +25,7 @@
                 <button class="tab-btn" id="signupTabBtn" onclick="switchTab('signup')">Sign Up</button>
             </div>
 
-            <!-- LOGIN FORM -->
+            
             <form id="loginForm" class="auth-form active" onsubmit="event.preventDefault(); window.location.href='booking.html';">
                 <h2>Welcome Back 👋</h2>
                 <p class="subtitle">Enter your credentials to manage bookings & rewards.</p>
@@ -58,7 +58,7 @@
                 </div>
             </form>
 
-            <!-- SIGNUP FORM -->
+            
             <form id="signupForm" class="auth-form" onsubmit="event.preventDefault(); window.location.href='booking.html';">
                 <h2>Create Account ✨</h2>
                 <p class="subtitle">Join MovieHub for instant seat locking and zero booking fees.</p>
@@ -72,6 +72,7 @@
                     <label for="signupEmail">Email Address</label>
                     <input type="email" id="signupEmail" placeholder="alex@example.com" required>
                 </div>
+                
 
                 <div class="input-group">
                     <label for="signupPassword">Password</label>
@@ -86,30 +87,6 @@
         </div>
     </div>
 
-    <script>
-        function switchTab(tab) {
-            const loginForm = document.getElementById('loginForm');
-            const signupForm = document.getElementById('signupForm');
-            const loginBtn = document.getElementById('loginTabBtn');
-            const signupBtn = document.getElementById('signupTabBtn');
 
-            if (tab === 'login') {
-                loginForm.classList.add('active');
-                signupForm.classList.remove('active');
-                loginBtn.classList.add('active');
-                signupBtn.classList.remove('active');
-            } else {
-                signupForm.classList.add('active');
-                loginForm.classList.remove('active');
-                signupBtn.classList.add('active');
-                loginBtn.classList.remove('active');
-            }
-        }
-
-        function togglePass(id) {
-            const input = document.getElementById(id);
-            input.type = input.type === 'password' ? 'text' : 'password';
-        }
-    </script>
 </body>
 </html>
