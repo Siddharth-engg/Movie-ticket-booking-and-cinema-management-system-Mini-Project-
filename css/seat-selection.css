@@ -1,488 +1,408 @@
-/* BASIC SETTINGS  */
+/* basic reset */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: "Poppins", sans-serif;
-    background: #10151c;
-    color: #f5f1e8;
+/* page background */
+
+body{
+    font-family:"Poppins",sans-serif;
+    background:#F3EEFA;
+    color:#0A1931;
 }
 
+/* top navbar */
 
-/* == HEADER == */
+.header{
+    height:70px;
+    padding:0 6%;
 
-.header {
-    height: 70px;
-    padding: 0 6%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-    background: #151c24;
-    border-bottom: 1px solid #28313b;
+    background:#1A3D63;
+    border-bottom:2px solid #4A7FA7;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: #e8b04a;
+.logo{
+    font-size:24px;
+    font-weight:700;
+    color:#F6FAFD;
 }
 
-.back-link {
-    color: #c9ced3;
-    text-decoration: none;
-    font-size: 14px;
+.back-link{
+    text-decoration:none;
+    color:#B3CFE5;
+    font-size:14px;
 }
 
-.back-link:hover {
-    color: #e8b04a;
+.back-link:hover{
+    color:#F6FAFD;
 }
 
+/* main page */
 
-/*  MAIN PAGE == */
+.seat-page{
+    width:88%;
+    max-width:1250px;
+    margin:40px auto;
 
-.seat-page {
-    width: 88%;
-    max-width: 1250px;
-    margin: 45px auto;
-
-    display: grid;
-    grid-template-columns: 210px 1fr 270px;
-    gap: 35px;
+    display:grid;
+    grid-template-columns:210px 1fr 270px;
+    gap:35px;
 }
 
+/* movie info */
 
-/*  MOVIE INFORMATION  */
-
-.movie-info {
-    padding-top: 10px;
+.small-heading{
+    color:#4A7FA7;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:2px;
+    margin-bottom:10px;
 }
 
-.small-heading {
-    color: #e8b04a;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
+.movie-info h1{
+    font-size:34px;
+    margin-bottom:5px;
 }
 
-.movie-info h1 {
-    font-size: 34px;
-    margin-bottom: 5px;
+.movie-type{
+    color:#1A3D63;
+    opacity:.7;
 }
 
-.movie-type {
-    color: #aeb5bd;
-    font-size: 14px;
+.show-details{
+    margin-top:30px;
 }
 
-.show-details {
-    margin-top: 35px;
+.show-details div{
+    margin-bottom:20px;
 }
 
-.show-details div {
-    margin-bottom: 22px;
+.show-details span{
+    display:block;
+    color:#4A7FA7;
+    font-size:11px;
+    margin-bottom:4px;
 }
 
-.show-details span {
-    display: block;
-    color: #7f8993;
-    font-size: 11px;
-    margin-bottom: 4px;
+/* seat area */
+
+.seat-section{
+    background:#F6FAFD;
+    border:1px solid #B3CFE5;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
 }
 
-.show-details strong {
-    font-size: 14px;
-    font-weight: 500;
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
 }
 
-
-/* ============ SEAT SECTION ================= */
-
-.seat-section {
-    background: #151c24;
-    border: 1px solid #28313b;
-    border-radius: 12px;
-    padding: 30px 25px;
+.section-title h2{
+    color:#0A1931;
 }
 
-.section-title {
-    text-align: center;
-    margin-bottom: 35px;
+.section-title p{
+    color:#4A7FA7;
 }
 
-.section-title h2 {
-    font-size: 21px;
-    font-weight: 600;
+/* cinema screen */
+
+.screen-area{
+    width:75%;
+    margin:auto;
+    text-align:center;
+    margin-bottom:40px;
 }
 
-.section-title p {
-    color: #8f98a1;
-    font-size: 13px;
-    margin-top: 5px;
+.screen{
+    height:12px;
+    border-top:4px solid #4A7FA7;
+    border-radius:50%;
+    box-shadow:0 -5px 20px rgba(74,127,167,.4);
 }
 
-
-/* ================= SCREEN ========== */
-
-.screen-area {
-    width: 75%;
-    margin: 0 auto 40px;
-    text-align: center;
+.screen-area p{
+    margin-top:10px;
+    color:#1A3D63;
+    letter-spacing:3px;
+    font-size:10px;
 }
 
-.screen {
-    height: 12px;
+/* seat layout */
 
-    border-top: 3px solid #e8b04a;
-    border-radius: 50%;
-
-    box-shadow: 0 -5px 18px rgba(232, 176, 74, 0.20);
+.seat-layout{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
 }
 
-.screen-area p {
-    color: #7f8993;
-    font-size: 10px;
-    letter-spacing: 3px;
-    margin-top: 8px;
+.seat-row{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
 }
 
-
-/* ================= SEAT ROW ======= */
-
-.seat-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.row-name{
+    width:20px;
+    font-weight:600;
+    color:#1A3D63;
 }
 
-.seat-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+/* seat design */
+
+.seat{
+    width:38px;
+    height:32px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:6px;
+    cursor:pointer;
+
+    background:#F6FAFD;
+    border:1px solid #B3CFE5;
+    color:#0A1931;
+
+    font-size:10px;
+
+    transition:.2s;
 }
 
-.row-name {
-    width: 18px;
-    color: #7f8993;
-    font-size: 12px;
-    font-weight: 600;
+/* available seat hover */
+
+.seat.available:hover{
+    background:#B3CFE5;
+    border-color:#4A7FA7;
+    transform:translateY(-2px);
 }
 
+/* selected seat */
 
-/* ================= SEATS ================= */
-
-.seat {
-    width: 38px;
-    height: 32px;
-
-    border: 1px solid #39434e;
-    border-radius: 6px;
-
-    background: #222b35;
-    color: #d8dde1;
-
-    font-family: "Poppins", sans-serif;
-    font-size: 10px;
-
-    cursor: pointer;
-
-    transition: 0.2s;
+.seat.selected{
+    background:#4A7FA7;
+    border-color:#4A7FA7;
+    color:white;
+    font-weight:600;
 }
 
+/* booked seat */
 
-/* Available seat hover */
-
-.seat.available:hover {
-    border-color: #e8b04a;
-    color: #e8b04a;
-    transform: translateY(-2px);
+.seat.booked{
+    background:#1A3D63;
+    border-color:#1A3D63;
+    color:#B3CFE5;
+    cursor:not-allowed;
 }
 
-
-/* Selected seat */
-
-.seat.selected {
-    background: #e8b04a;
-    border-color: #e8b04a;
-    color: #151515;
-    font-weight: 600;
+.aisle{
+    width:20px;
 }
 
+/* seat legend */
 
-/* Booked seat */
+.legend{
+    display:flex;
+    justify-content:center;
+    gap:25px;
 
-.seat.booked {
-    background: #3b4249;
-    border-color: #3b4249;
-    color: #737b83;
-    cursor: not-allowed;
+    margin-top:35px;
+    padding-top:20px;
+
+    border-top:1px solid #B3CFE5;
 }
 
-
-/* Space between seat groups */
-
-.aisle {
-    width: 20px;
+.legend div{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    font-size:12px;
 }
 
-
-/* ========== LEGEND ================= */
-
-.legend {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-
-    margin-top: 35px;
-    padding-top: 22px;
-
-    border-top: 1px solid #28313b;
+.legend-box{
+    width:13px;
+    height:13px;
+    border-radius:4px;
+    display:inline-block;
 }
 
-.legend div {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-
-    color: #9da5ad;
-    font-size: 11px;
+.available-box{
+    background:#F6FAFD;
+    border:1px solid #B3CFE5;
 }
 
-.legend-box {
-    width: 13px;
-    height: 13px;
-    border-radius: 4px;
-    display: inline-block;
+.selected-box{
+    background:#4A7FA7;
 }
 
-.available-box {
-    background: #222b35;
-    border: 1px solid #39434e;
+.booked-box{
+    background:#1A3D63;
 }
 
-.selected-box {
-    background: #e8b04a;
+/* booking summary */
+
+.summary{
+    background:#F6FAFD;
+    border:1px solid #B3CFE5;
+    border-radius:15px;
+    padding:25px;
+
+    height:fit-content;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
 }
 
-.booked-box {
-    background: #3b4249;
+.summary h2{
+    margin-bottom:20px;
 }
 
-
-/* ================= BOOKING SUMMARY ================= */
-
-.summary {
-    background: #151c24;
-    border: 1px solid #28313b;
-    border-radius: 12px;
-    padding: 25px;
-
-    height: fit-content;
+.summary-movie{
+    border-bottom:1px solid #B3CFE5;
+    padding-bottom:20px;
 }
 
-.summary h2 {
-    font-size: 19px;
-    margin-bottom: 22px;
+.summary-movie p{
+    color:#4A7FA7;
+    margin-top:5px;
 }
 
-.summary-movie {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #28313b;
+.selected-info{
+    padding:20px 0;
 }
 
-.summary-movie h3 {
-    font-size: 17px;
-    font-weight: 600;
+.selected-seats{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:10px;
 }
 
-.summary-movie p {
-    color: #8f98a1;
-    font-size: 12px;
-    margin-top: 5px;
+.selected-seats span{
+    background:#B3CFE5;
+    color:#0A1931;
+    padding:5px 10px;
+    border-radius:5px;
+    font-size:11px;
 }
 
+/* price section */
 
-/* Selected seat information */
-
-.selected-info {
-    padding: 20px 0;
+.price-details{
+    border-top:1px solid #B3CFE5;
+    padding-top:15px;
 }
 
-.selected-info > span {
-    color: #8f98a1;
-    font-size: 12px;
+.price-details div{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
 }
 
-.selected-seats {
-    display: flex;
-    gap: 7px;
-    margin-top: 10px;
-    flex-wrap: wrap;
+/* total amount */
+
+.total{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    border-top:1px solid #B3CFE5;
+
+    margin-top:10px;
+    padding-top:18px;
 }
 
-.selected-seats span {
-    background: #332d20;
-    color: #e8b04a;
-
-    padding: 5px 10px;
-    border-radius: 5px;
-
-    font-size: 11px;
+.total strong{
+    color:#1A3D63;
+    font-size:22px;
 }
 
+/* payment button */
 
-/* Price */
+.continue-btn{
+    width:100%;
+    margin-top:20px;
+    padding:12px;
 
-.price-details {
-    border-top: 1px solid #28313b;
-    padding-top: 17px;
+    border:none;
+    border-radius:8px;
+
+    background:#4A7FA7;
+    color:white;
+
+    font-family:"Poppins",sans-serif;
+    font-weight:600;
+
+    cursor:pointer;
+    transition:.2s;
 }
 
-.price-details div {
-    display: flex;
-    justify-content: space-between;
-
-    margin-bottom: 12px;
-
-    color: #969fa8;
-    font-size: 12px;
+.continue-btn:hover{
+    background:#1A3D63;
 }
 
-.price-details strong {
-    color: #e2e5e8;
-    font-weight: 500;
+/* small note */
+
+.note{
+    margin-top:12px;
+    text-align:center;
+    color:#4A7FA7;
+    font-size:10px;
 }
 
+/* tablet view */
 
-/* Total */
+@media(max-width:1000px){
 
-.total {
-    border-top: 1px solid #28313b;
-
-    margin-top: 5px;
-    padding-top: 18px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.total span {
-    font-size: 13px;
-    color: #c4c9ce;
-}
-
-.total strong {
-    color: #e8b04a;
-    font-size: 21px;
-}
-
-
-/* Continue button */
-
-.continue-btn {
-    width: 100%;
-    margin-top: 22px;
-    padding: 12px;
-
-    border: none;
-    border-radius: 6px;
-
-    background: #e8b04a;
-    color: #171717;
-
-    font-family: "Poppins", sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-.continue-btn:hover {
-    background: #f0bd5e;
-}
-
-
-/* Small note */
-
-.note {
-    color: #707983;
-    font-size: 10px;
-    text-align: center;
-    margin-top: 12px;
-}
-
-
-/* ===== RESPONSIVE ================= */
-
-@media (max-width: 1000px) {
-
-    .seat-page {
-        grid-template-columns: 1fr;
+    .seat-page{
+        grid-template-columns:1fr;
     }
 
-    .movie-info {
-        text-align: center;
+    .movie-info{
+        text-align:center;
     }
 
-    .show-details {
-        display: flex;
-        justify-content: center;
-        gap: 35px;
-        margin-top: 20px;
-    }
-
-    .show-details div {
-        margin-bottom: 0;
-    }
-
-    .summary {
-        width: 100%;
+    .show-details{
+        display:flex;
+        justify-content:center;
+        gap:30px;
     }
 }
 
+/* mobile view */
 
-@media (max-width: 600px) {
+@media(max-width:600px){
 
-    .header {
-        padding: 0 5%;
+    .seat-page{
+        width:95%;
+        margin:20px auto;
     }
 
-    .seat-page {
-        width: 94%;
-        margin: 25px auto;
+    .seat-section{
+        padding:20px 10px;
     }
 
-    .seat-section {
-        padding: 25px 10px;
+    .seat{
+        width:32px;
+        height:28px;
+        font-size:9px;
     }
 
-    .show-details {
-        gap: 15px;
+    .legend{
+        gap:10px;
     }
 
-    .seat-row {
-        gap: 5px;
+    .aisle{
+        width:10px;
     }
-
-    .seat {
-        width: 32px;
-        height: 29px;
-        font-size: 9px;
-    }
-
-    .aisle {
-        width: 10px;
-    }
-
-    .legend {
-        gap: 12px;
-    }
-
 }
