@@ -1,7 +1,7 @@
-Style · CSS
 /* ===============================
    MOVIE BOOKING WEBSITE - CSS
    Simple beginner-level styling
+   Color palette: Deep Ocean Blue
    =============================== */
  
 /* Reset some default spacing */
@@ -12,14 +12,14 @@ Style · CSS
 }
  
 body {
-  background-color: #121016;
-  color: #f4f1ea;
+  background-color: #0A1931;
+  color: #F6FAFD;
   font-family: Arial, sans-serif;
 }
  
 a {
   text-decoration: none;
-  color: #f4f1ea;
+  color: #F6FAFD;
 }
  
 img {
@@ -31,7 +31,7 @@ img {
    =============================== */
  
 .topbar {
-  background-color: #1c1922;
+  background-color: #1A3D63;
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
@@ -42,22 +42,22 @@ img {
 .logo {
   font-size: 26px;
   font-weight: bold;
-  color: #940505;
+  color: #B3CFE5;
 }
  
 .search-box input {
   padding: 8px;
   width: 200px;
-  border: 1px solid #333;
+  border: 1px solid #4A7FA7;
   border-radius: 4px 0 0 4px;
   outline: none;
+  background-color: #F6FAFD;
 }
  
 .search-box button {
   padding: 8px 15px;
-  
-  background-color: #940505 ;
-  color: #000;
+  background-color: #4A7FA7;
+  color: #F6FAFD;
   border: none;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
@@ -75,7 +75,7 @@ img {
 .heading {
   font-size: 24px;
   margin-bottom: 20px;
-  color: #f4f1ea;
+  color: #F6FAFD;
 }
  
 /* ===============================
@@ -88,15 +88,15 @@ img {
  
 .filter-title {
   font-size: 14px;
-  color: #9b94a3;
+  color: #B3CFE5;
   margin-bottom: 8px;
 }
  
 .chip {
   display: inline-block;
-  background-color: #1c1922;
-  color: #9b94a3;
-  border: 1px solid #333;
+  background-color: #1A3D63;
+  color: #B3CFE5;
+  border: 1px solid #4A7FA7;
   padding: 6px 14px;
   margin-right: 8px;
   margin-bottom: 8px;
@@ -105,10 +105,10 @@ img {
 }
  
 .chip.active {
-  background-color: #940505;
-  color: #000;
+  background-color: #4A7FA7;
+  color: #F6FAFD;
   font-weight: bold;
-  border: 1px solid #940505;
+  border: 1px solid #4A7FA7;
 }
  
 /* ===============================
@@ -122,8 +122,8 @@ img {
 }
  
 .movie-card {
-  background-color: #1c1922;
-  border: 1px solid #333;
+  background-color: #1A3D63;
+  border: 1px solid #4A7FA7;
   border-radius: 6px;
   width: 220px;
   overflow: hidden;
@@ -142,18 +142,19 @@ img {
 .movie-title {
   font-size: 18px;
   margin-bottom: 6px;
+  color: #F6FAFD;
 }
  
 .movie-meta {
   font-size: 13px;
-  color: #9b94a3;
+  color: #B3CFE5;
   margin-bottom: 8px;
 }
  
 .rating {
   display: inline-block;
-  background-color: #234;
-  color: #5fb488;
+  background-color: #0A1931;
+  color: #B3CFE5;
   font-size: 12px;
   font-weight: bold;
   padding: 3px 8px;
@@ -169,7 +170,7 @@ img {
   gap: 30px;
   flex-wrap: wrap;
   margin-bottom: 30px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #4A7FA7;
   padding-bottom: 30px;
 }
  
@@ -186,28 +187,30 @@ img {
 .detail-title {
   font-size: 32px;
   margin-bottom: 8px;
+  color: #F6FAFD;
 }
  
 .tagline {
   font-style: italic;
-  color: #9b94a3;
+  color: #B3CFE5;
   margin-bottom: 15px;
 }
  
 .tag {
   display: inline-block;
-  border: 1px solid #333;
+  border: 1px solid #4A7FA7;
   padding: 4px 10px;
   border-radius: 20px;
   font-size: 12px;
   margin-right: 6px;
   margin-bottom: 10px;
-  color: #9b94a3;
+  color: #B3CFE5;
 }
  
 .synopsis {
   margin-bottom: 20px;
   max-width: 600px;
+  color: #F6FAFD;
 }
  
 /* ===============================
@@ -236,11 +239,12 @@ img {
 .cast-name {
   font-size: 12px;
   font-weight: bold;
+  color: #F6FAFD;
 }
  
 .cast-role {
   font-size: 11px;
-  color: #9b94a3;
+  color: #B3CFE5;
 }
  
 /* ===============================
@@ -248,8 +252,8 @@ img {
    =============================== */
  
 .cinema-card {
-  background-color: #1c1922;
-  border: 1px solid #333;
+  background-color: #1A3D63;
+  border: 1px solid #4A7FA7;
   border-radius: 6px;
   padding: 15px;
   margin-bottom: 15px;
@@ -258,18 +262,19 @@ img {
 .cinema-name {
   font-size: 16px;
   font-weight: bold;
+  color: #F6FAFD;
 }
  
 .cinema-address {
   font-size: 13px;
-  color: #9b94a3;
+  color: #B3CFE5;
   margin-bottom: 10px;
 }
  
 .showtime-btn {
-  background-color: #234;
-  color: #5fb488;
-  border: 1px solid #5fb488;
+  background-color: #0A1931;
+  color: #B3CFE5;
+  border: 1px solid #4A7FA7;
   padding: 8px 14px;
   border-radius: 4px;
   margin-right: 10px;
