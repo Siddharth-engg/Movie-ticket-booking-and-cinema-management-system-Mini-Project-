@@ -23,12 +23,12 @@ auth html
     <div class="auth-container">
         <div class="auth-card">
             <div class="tab-buttons">
-                <button class="tab-btn active" id="loginTabBtn" onclick="switchTab('login')">Login</button>
-                <button class="tab-btn" id="signupTabBtn" onclick="switchTab('signup')">Sign Up</button>
+                <button type="button" class="tab-btn active" id="loginTabBtn" onclick="switchTab('login')">Login</button>
+                <button type="button" class="tab-btn" id="signupTabBtn" onclick="switchTab('signup')">Sign Up</button>
             </div>
 
             <!-- Login Form -->
-            <form id="loginForm" class="auth-form active" onsubmit="event.preventDefault(); window.location.href='booking.html';">
+            <form id="loginForm" class="auth-form active" onsubmit="event.preventDefault(); window.location.href='listing.html';">
                 <h2>Welcome Back 👋</h2>
                 <p class="subtitle">Enter your credentials to manage bookings & rewards.</p>
 
@@ -61,7 +61,7 @@ auth html
             </form>
 
             <!-- Signup Form -->
-            <form id="signupForm" class="auth-form" onsubmit="event.preventDefault(); window.location.href='booking.html';">
+            <form id="signupForm" class="auth-form" onsubmit="event.preventDefault(); window.location.href='listing.html';">
                 <h2>Create Account ✨</h2>
                 <p class="subtitle">Join Cinevia for instant seat locking and zero booking fees.</p>
 
@@ -87,5 +87,26 @@ auth html
             </form>
         </div>
     </div>
+
+    <script>
+        function switchTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const loginTab = document.getElementById('loginTabBtn');
+            const signupTab = document.getElementById('signupTabBtn');
+
+            const isLogin = tab === 'login';
+            loginForm.classList.toggle('active', isLogin);
+            signupForm.classList.toggle('active', !isLogin);
+            loginTab.classList.toggle('active', isLogin);
+            signupTab.classList.toggle('active', !isLogin);
+        }
+
+        function togglePass(id) {
+            const input = document.getElementById(id);
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+        }
+    </script>
 </body>
 </html>
