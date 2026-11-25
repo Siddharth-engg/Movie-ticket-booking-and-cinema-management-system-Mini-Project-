@@ -1,5 +1,3 @@
-confirmation.html
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +15,7 @@ confirmation.html
         <div class="logo">
             🎬 <span>Cine</span>via
         </div>
-        <a href="index.html" class="back-home">← Back to Home</a>
+        <a href="auth.html" class="back-home">← Back to Account</a>
     </header>
 
     <main class="confirmation-container">
@@ -88,7 +86,15 @@ confirmation.html
                 </div>
             </div>
         </div>
+
+        <!-- Ticket Interactive Actions -->
+        <div class="ticket-actions">
+            <button class="action-btn primary" id="printTicketBtn">🖨️ Print Ticket</button>
+            <a href="auth.html" class="action-btn secondary">👤 Account / Login</a>
+        </div>
     </main>
 
+    <!-- Cinevia Ticket Confirmation Script -->
+    <script src="../js/confirmation.js"></script>
 </body>
 </html>
