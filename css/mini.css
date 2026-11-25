@@ -132,6 +132,7 @@ nav a:hover::after {
     padding: 0.5rem 1.4rem;
     border-radius: 25px;
     font-weight: 600;
+    transition: 0.3s;
 }
 
 .login-btn:hover {
@@ -186,6 +187,17 @@ nav a:hover::after {
 }
 
 .slide-2 {
+    background:
+        linear-gradient(
+            90deg,
+            #0A1931 10%,
+            rgba(10, 25, 49, 0.90) 35%,
+            rgba(10, 25, 49, 0.25) 75%
+        ),
+        url("https://images.unsplash.com/photo-1485846234645-a62644f84728")
+        center/cover no-repeat;
+
+    animation-delay: 5s;
     background: linear-gradient(135deg, #061122 0%, var(--primary-dark) 50%, var(--secondary-dark) 100%);
 }
 
