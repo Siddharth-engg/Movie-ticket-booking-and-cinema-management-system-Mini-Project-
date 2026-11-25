@@ -406,3 +406,35 @@ body{
         width:10px;
     }
 }
+
+
+/* Dynamic seat layout helpers */
+.seat:focus-visible,
+.continue-btn:focus-visible {
+    outline: 3px solid #0A1931;
+    outline-offset: 3px;
+}
+
+.continue-btn:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.empty-selection {
+    color: #4A7FA7;
+    font-size: 12px;
+}
+
+.booking-message {
+    margin-top: 10px;
+    text-align: center;
+    color: #1A3D63;
+    font-size: 12px;
+    min-height: 16px;
+}
+
+@media(max-width:600px) {
+    .seat-row {
+        gap: 5px;
+    }
+}
