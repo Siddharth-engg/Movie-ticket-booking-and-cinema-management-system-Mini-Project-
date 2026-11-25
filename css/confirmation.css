@@ -248,6 +248,50 @@ body {
     line-height: 1.35;
 }
 
+/* Ticket Action Buttons */
+.ticket-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.action-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.action-btn.primary {
+    background-color: var(--color-light-blue);
+    color: var(--color-dark-navy);
+    border: none;
+}
+
+.action-btn.primary:hover {
+    background-color: var(--color-off-white);
+    transform: translateY(-2px);
+}
+
+.action-btn.secondary {
+    background-color: transparent;
+    border: 1px solid var(--color-muted-blue);
+    color: var(--color-light-blue);
+}
+
+.action-btn.secondary:hover {
+    background-color: rgba(74, 127, 167, 0.2);
+    color: var(--color-off-white);
+}
+
 /* Responsive Scaling */
 @media (max-width: 580px) {
     .ticket-body {
@@ -267,5 +311,45 @@ body {
     .ticket-footer {
         flex-direction: column;
         text-align: center;
+    }
+
+    .ticket-actions {
+        flex-direction: column;
+    }
+
+    .action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Print Optimization */
+@media print {
+    .navbar, .success-banner, .ticket-actions, .back-home {
+        display: none !important;
+    }
+    body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
+    .ticket-card {
+        box-shadow: none !important;
+        border: 2px solid #000000 !important;
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
+    .ticket-header h2, .value, .qr-text h3 {
+        color: #000000 !important;
+    }
+    .label, .sub-value, .time-tag, .qr-text p {
+        color: #333333 !important;
+    }
+    .price, .valueHighlight {
+        color: #000000 !important;
+        font-weight: bold !important;
+    }
+    .badge {
+        background-color: #000000 !important;
+        color: #ffffff !important;
     }
 }
