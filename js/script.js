@@ -400,7 +400,7 @@ function handleSocialLogin(provider) {
 // ==========================================
 function initConfirmationPage() {
     const currentUserJson = localStorage.getItem('cinevia_current_user') || localStorage.getItem('cinevia_last_registered');
-    
+
     if (currentUserJson) {
         try {
             const currentUser = JSON.parse(currentUserJson);

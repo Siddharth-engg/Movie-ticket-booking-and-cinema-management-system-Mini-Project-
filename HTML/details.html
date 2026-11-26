@@ -1,98 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Cinevia - Movie Details</title>
-<link rel="stylesheet" href="../CSS/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Movie information and cinema showtimes on Cinevia.">
+    <title>Movie Details - Cinevia</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <header class="topbar">
+        <a href="index.html" class="logo">Cinevia</a>
+        <a href="listing.html">← All movies</a>
+        <a href="auth.html">Account</a>
+    </header>
 
-  <!-- Top bar -->
-  <div class="topbar">
-    <a href="../HTML/listing.html" class="logo">Cinevia</a>
-    <div class="search-box">
-      <input type="text" placeholder="Search movies...">
-      <button>Search</button>
-    </div>
-  </div>
+    <main class="container">
+        <section class="detail-top">
+            <img id="moviePoster" src="../Pics/toxic.jpeg" alt="Movie poster">
+            <div class="detail-info">
+                <p class="filter-title" id="movieStatus">NOW SHOWING</p>
+                <h1 class="detail-title" id="movieTitle">Loading movie…</h1>
+                <p class="tagline" id="movieTagline"></p>
+                <div id="movieTags" aria-label="Movie information"></div>
+                <p class="synopsis" id="movieSynopsis"></p>
+                <h2 class="heading" style="font-size:18px;">Cast</h2>
+                <div class="cast-list" id="movieCast"></div>
+            </div>
+        </section>
 
-  <div class="container">
+        <section aria-labelledby="showtimesHeading">
+            <h2 class="heading" id="showtimesHeading">Choose a cinema and showtime</h2>
+            <p id="showtimeNotice" class="synopsis" aria-live="polite"></p>
+            <div class="cinema-card" data-screen="Screen 1">
+                <div class="cinema-name">PVR Rajouri Garden</div>
+                <div class="cinema-address">Rajouri Garden, New Delhi</div>
+                <button type="button" class="showtime-btn">10:15 AM</button>
+                <button type="button" class="showtime-btn">1:30 PM</button>
+                <button type="button" class="showtime-btn">4:45 PM</button>
+                <button type="button" class="showtime-btn">8:00 PM</button>
+            </div>
+            <div class="cinema-card" data-screen="Screen 2">
+                <div class="cinema-name">INOX Nehru Place</div>
+                <div class="cinema-address">Nehru Place, New Delhi</div>
+                <button type="button" class="showtime-btn">11:00 AM</button>
+                <button type="button" class="showtime-btn">2:20 PM</button>
+                <button type="button" class="showtime-btn">6:10 PM</button>
+            </div>
+        </section>
 
-    <!-- Poster + basic info -->
-    <div class="detail-top">
-      <img src="../Pics/toxic.jpeg" alt="Toxic poster">
+        <section class="trailer-section">
+            <h2 class="heading">Trailer</h2>
+            <div class="trailer-box">
+                <p>Trailer information will be added when available.</p>
+            </div>
+        </section>
+    </main>
 
-      <div class="detail-info">
-        <h1 class="detail-title">Toxic: A Fairy Tale for Grownups</h1>
-        <p class="tagline">Not every story with a happy ending is a fairy tale.</p>
-
-        <span class="tag">Action</span>
-        <span class="tag">Hindi</span>
-        <span class="tag">U/A</span>
-        <span class="tag">2h 30m</span>
-        <span class="rating">★ 8.2 / 10</span>
-
-        <p class="synopsis">
-          Set in a small coastal town, two hitmen with very different codes of
-          honour are pulled into a violent power struggle that forces them to
-          question everything they believe in.
-        </p>
-
-        <!-- Cast -->
-        <h3 class="heading" style="font-size:18px;">Cast</h3>
-        <div class="cast-list">
-          <div class="cast-member">
-            <img src="../Pics/cast1.jpg" alt="Actor 1">
-            <div class="cast-name">Yash</div>
-            <div class="cast-role">Lead Role</div>
-          </div>
-          <div class="cast-member">
-            <img src="../Pics/cast2.jpg" alt="Actor 2">
-            <div class="cast-name">Actor Name 2</div>
-            <div class="cast-role">Lead Role</div>
-          </div>
-          <div class="cast-member">
-            <img src="../Pics/cast3.jpg" alt="Actor 3">
-            <div class="cast-name">Actor Name 3</div>
-            <div class="cast-role">Supporting Role</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Showtimes -->
-    <h2 class="heading">Showtimes</h2>
-
-    <div class="cinema-card">
-      <div class="cinema-name">PVR Rajouri Garden</div>
-      <div class="cinema-address">Rajouri Garden, New Delhi</div>
-      <button type="button" class="showtime-btn" onclick="window.location.href='seat-selection.html'">10:15 AM</button>
-      <button type="button" class="showtime-btn" onclick="window.location.href='seat-selection.html'">1:30 PM</button>
-      <button type="button" class="showtime-btn" onclick="window.location.href='seat-selection.html'">4:45 PM</button>
-      <button type="button" class="showtime-btn" onclick="window.location.href='seat-selection.html'">8:00 PM</button>
-    </div>
-
-    <div class="cinema-card">
-      <div class="cinema-name">INOX Nehru Place</div>
-      <div class="cinema-address">Nehru Place, New Delhi</div>
-      <button type="button" class="showtime-btn" onclick="window.location.href='seat-selection.html'">11:00 AM</button>
-      <button type="button" class="showtime-btn" onclick="window.location.href='seat-selection.html'">2:20 PM</button>
-      <button type="button" class="showtime-btn" onclick="window.location.href='seat-selection.html'">6:10 PM</button>
-    </div>
-
-    <!-- Trailer -->
-    <h2 class="heading">Trailer</h2>
-    <div class="trailer-box">
-      <iframe
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        title="Movie Trailer"
-        allowfullscreen>
-      </iframe>
-    </div>
-
-  </div>
-
-  <!-- JavaScript: hamesha </body> se bilkul pehle -->
-  <script src="../JS/details.js"></script>
+    <script src="../js/movie-data.js"></script>
+    <script src="../js/details.js"></script>
 </body>
 </html>

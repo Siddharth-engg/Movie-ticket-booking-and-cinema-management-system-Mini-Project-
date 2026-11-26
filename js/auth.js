@@ -289,11 +289,14 @@ function handleSignup(event) {
     console.log("%c=======================================================", "color: #4A7FA7; font-weight: bold;");
     console.log("👤 Full Name:      ", newUser.name);
     console.log("📧 Email Address:  ", newUser.email);
-    console.log("🔑 Password:       ", newUser.password);
     console.log("🆔 User ID:        ", newUser.id);
     console.log("📅 Registered At:  ", newUser.formattedDate);
-    console.log("📊 Complete User Object Data:");
-    console.table([newUser]);
+    console.log("📊 New account:", {
+        id: newUser.id,
+        name: newUser.name,
+        email: newUser.email,
+        createdAt: newUser.createdAt
+    });
     console.log("%c=======================================================", "color: #4A7FA7; font-weight: bold;");
 
     // Show visual confirmation on UI
@@ -376,11 +379,11 @@ function handleLogin(event) {
         console.log("🕒 Login Timestamp:", new Date().toLocaleString());
         console.log("%c=======================================================", "color: #5cb85c; font-weight: bold;");
 
-        showAlert(loginForm, `Welcome back, ${authenticatedUser.name}! Directing to your ticket...`, 'success');
+        showAlert(loginForm, `Welcome back, ${authenticatedUser.name}! Opening the movie list...`, 'success');
 
-        // Redirect user to Confirmation page after brief delay
+        // Return to the movie catalogue after sign-in.
         setTimeout(() => {
-            window.location.href = 'confirmation.html';
+            window.location.href = 'listing.html';
         }, 1000);
 
     } else {
@@ -422,7 +425,7 @@ function handleSocialLogin(provider) {
     console.log(`✅ Successfully authenticated via ${provider}:`, demoSocialUser);
     localStorage.setItem('cinevia_current_user', JSON.stringify(demoSocialUser));
     alert(`Logged in with ${provider} as ${demoSocialUser.email}! Redirecting...`);
-    window.location.href = 'confirmation.html';
+    window.location.href = 'listing.html';
 }
 
 // Auto-populate remembered email or last registered user when DOM is ready
@@ -522,5 +525,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Ignore parse errors
             }
         }
+    }
+
+    if (window.location.hash === "#signup") {
+        switchTab("signup");
     }
 });

@@ -1,64 +1,58 @@
-/**
- * Cinevia - Ticket Confirmation Page JavaScript
- * Handles dynamic user greeting, printing ticket, and booking session details.
- */
+document.addEventListener("DOMContentLoaded", () => {
+    let booking;
+    try {
+        booking = JSON.parse(sessionStorage.getItem("cineviaBooking") || "null");
+    } catch (error) {
+        console.error("Could not read the saved booking.", error);
+    }
 
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("🎟️ Ticket Confirmation View Loaded.");
+    const ticket = document.getElementById("printableTicket");
+    const printButton = document.getElementById("printTicketBtn");
+    if (!booking || !Array.isArray(booking.seats) || booking.seats.length === 0) {
+        document.getElementById("confirmationHeading").textContent = "No booking found";
+        document.getElementById("confirmationMessage").textContent =
+            "Choose a movie and seats first. Your booking will appear here after seat selection.";
+        ticket.hidden = true;
+        printButton.hidden = true;
+        return;
+    }
 
-    // Retrieve active user from localStorage if logged in
-    const currentUserJson = localStorage.getItem('cinevia_current_user') || localStorage.getItem('cinevia_last_registered');
-    
-    if (currentUserJson) {
+    document.getElementById("ticketMovie").textContent = booking.movie || "Selected movie";
+    document.getElementById("ticketDate").textContent = booking.date || "";
+    document.getElementById("ticketTime").textContent = booking.time || "";
+    document.getElementById("ticketTheater").textContent = booking.theater || "Cinema";
+    document.getElementById("ticketScreen").textContent = booking.screen || "";
+    document.getElementById("ticketSeats").textContent =
+        `${booking.seats.join(", ")} (${booking.seats.length} ${booking.seats.length === 1 ? "Seat" : "Seats"})`;
+    document.getElementById("ticketTotalPrice").textContent =
+        `₹${Number(booking.total || 0).toLocaleString("en-IN")}`;
+
+    if (!booking.bookingId) {
+        booking.bookingId = `CV-${Date.now().toString(36).toUpperCase()}`;
         try {
-            const currentUser = JSON.parse(currentUserJson);
-            if (currentUser && currentUser.name) {
-                const bannerP = document.querySelector('.success-banner p');
-                if (bannerP) {
-                    bannerP.innerHTML = `Welcome <strong>${currentUser.name}</strong>! Your ticket and invoice details have been emailed to <em>${currentUser.email}</em>.`;
-                }
-
-                // If user has a personalized ID, link it to the booking
-                const bookingIdEl = document.getElementById('ticketBookingId');
-                if (bookingIdEl && currentUser.id) {
-                    bookingIdEl.textContent = '#' + currentUser.id.replace('USR-', 'CV-');
-                }
-            }
-        } catch (e) {
-            console.warn("Could not parse current user data:", e);
+            sessionStorage.setItem("cineviaBooking", JSON.stringify(booking));
+        } catch (error) {
+            console.error("Could not save your booking reference.", error);
         }
     }
+    document.getElementById("ticketBookingId").textContent = booking.bookingId;
 
-    // Set today's date dynamically on the ticket if desired
-    const ticketDateEl = document.getElementById('ticketDate');
-    if (ticketDateEl) {
-        const today = new Date();
-        const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
-        ticketDateEl.textContent = today.toLocaleDateString('en-GB', options);
+    const poster = document.querySelector(".movie-poster");
+    if (poster && booking.poster) {
+        poster.src = booking.poster;
+        poster.alt = `${booking.movie || "Movie"} poster`;
     }
 
-    // Print button handler
-    const printBtn = document.getElementById('printTicketBtn');
-    if (printBtn) {
-        printBtn.addEventListener('click', () => {
-            console.log("🖨️ Printing Ticket...");
-            window.print();
-        });
+    let currentUser = null;
+    try {
+        currentUser = JSON.parse(localStorage.getItem("cinevia_current_user") || "null");
+    } catch (error) {
+        console.error("Could not read the saved account.", error);
+    }
+    if (currentUser && currentUser.name) {
+        document.getElementById("confirmationMessage").textContent =
+            `Your seats are reserved in this browser demo, ${currentUser.name}.`;
     }
 
-    // Log ticket details to console
-    const movieTitle = document.getElementById('ticketMovie')?.textContent || 'Deadpool & Wolverine';
-    const movieSeats = document.getElementById('ticketSeats')?.textContent || 'E12, E13';
-    const totalPaid = document.getElementById('ticketTotalPrice')?.textContent || '$28.00';
-    const bookingId = document.getElementById('ticketBookingId')?.textContent || '#CV-8923401';
-
-    console.log("%c=======================================================", "color: #4A7FA7; font-weight: bold;");
-    console.log("%c🎬 CONFIRMED MOVIE TICKET DETAILS", "color: #B3CFE5; font-size: 14px; font-weight: bold;");
-    console.log("%c=======================================================", "color: #4A7FA7; font-weight: bold;");
-    console.log("📽️ Movie:      ", movieTitle);
-    console.log("🪑 Seats:      ", movieSeats);
-    console.log("💳 Total Paid: ", totalPaid);
-    console.log("🎫 Booking ID: ", bookingId);
-    console.log("%c=======================================================", "color: #4A7FA7; font-weight: bold;");
+    printButton.addEventListener("click", () => window.print());
 });
-

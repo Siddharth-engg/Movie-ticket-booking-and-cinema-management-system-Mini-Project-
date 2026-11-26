@@ -4,16 +4,29 @@
  * show details, ticket price, seats, or booked seats.
  */
 
+const params = new URLSearchParams(window.location.search);
+let savedBooking = null;
+try {
+    savedBooking = JSON.parse(sessionStorage.getItem("cineviaBooking") || "null");
+} catch (error) {
+    console.error("Could not read the selected booking.", error);
+}
+
 const SHOW_DATA = {
     movie: {
-        title: "War 2",
-        genre: "Action • Thriller",
-        date: "20 September",
-        time: "07:30 PM",
-        screen: "Screen 2"
+        title: params.get("movie")
+            ? (window.CINEVIA_MOVIES || []).find((movie) => movie.id === params.get("movie"))?.title || "Selected movie"
+            : savedBooking?.movie || "Selected movie",
+        genre: savedBooking?.genre || "Cinema",
+        date: params.get("date") || savedBooking?.date || new Date().toLocaleDateString("en-IN"),
+        time: params.get("time") || savedBooking?.time || "Showtime not selected",
+        theater: params.get("theater") || savedBooking?.theater || "Cinema",
+        screen: params.get("screen") || savedBooking?.screen || "Screen 1"
     },
-    ticketPrice: 180,
-    convenienceFee: 30,
+    movieId: params.get("movie") || savedBooking?.movieId || "",
+    poster: savedBooking?.poster || "",
+    ticketPrice: savedBooking?.ticketPrice || 180,
+    convenienceFee: savedBooking?.convenienceFee || 30,
     rows: ["A", "B", "C", "D", "E", "F"],
     seatsPerRow: 8,
     aisleAfterSeat: 4,
@@ -29,6 +42,16 @@ const ticketTotal = document.getElementById("ticketTotal");
 const grandTotal = document.getElementById("grandTotal");
 const continueBtn = document.getElementById("continueBtn");
 const bookingMessage = document.createElement("p");
+const hasValidShow = Boolean(
+    savedBooking
+    && params.get("movie")
+    && params.get("time")
+    && params.get("theater")
+    && params.get("screen")
+    && savedBooking.movieId === params.get("movie")
+    && savedBooking.time === params.get("time")
+    && savedBooking.theater === params.get("theater")
+);
 
 bookingMessage.className = "booking-message";
 bookingMessage.id = "bookingMessage";
@@ -47,7 +70,7 @@ function populateMovieDetails() {
 
     document.getElementById("summaryMovieTitle").textContent = SHOW_DATA.movie.title;
     document.getElementById("summaryShowDetails").textContent =
-        `${SHOW_DATA.movie.screen} • ${SHOW_DATA.movie.time}`;
+        `${SHOW_DATA.movie.date} • ${SHOW_DATA.movie.theater} • ${SHOW_DATA.movie.screen} • ${SHOW_DATA.movie.time}`;
 
     document.getElementById("convenienceFee").textContent =
         formatCurrency(SHOW_DATA.convenienceFee);
@@ -149,7 +172,7 @@ function updateSummary() {
 
     const count = seatList.length;
     const ticketAmount = count * SHOW_DATA.ticketPrice;
-    const totalAmount = ticketAmount + SHOW_DATA.convenienceFee;
+    const totalAmount = count > 0 ? ticketAmount + SHOW_DATA.convenienceFee : 0;
 
     ticketCount.textContent = count;
     ticketTotal.textContent = formatCurrency(ticketAmount);
@@ -165,9 +188,13 @@ function continueToPayment() {
 
     // Demo flow: save the booking details for the confirmation page.
     const booking = {
+        movieId: SHOW_DATA.movieId,
         movie: SHOW_DATA.movie.title,
+        genre: SHOW_DATA.movie.genre,
+        poster: SHOW_DATA.poster,
         date: SHOW_DATA.movie.date,
         time: SHOW_DATA.movie.time,
+        theater: SHOW_DATA.movie.theater,
         screen: SHOW_DATA.movie.screen,
         seats: Array.from(selectedSeats),
         ticketPrice: SHOW_DATA.ticketPrice,
@@ -178,16 +205,27 @@ function continueToPayment() {
     try {
         sessionStorage.setItem("cineviaBooking", JSON.stringify(booking));
     } catch (error) {
-        console.warn("Could not save booking details in this browser.", error);
+        console.error("Could not save booking details in this browser.", error);
+        bookingMessage.textContent = "Your browser could not save this booking. Please enable site storage and try again.";
+        return;
     }
 
-    // Keep the existing project navigation.
     window.location.href = "confirmation.html";
 }
 
 continueBtn.addEventListener("click", continueToPayment);
 
-// Initial page setup.
-populateMovieDetails();
-renderSeats();
-updateSummary();
+if (hasValidShow) {
+    populateMovieDetails();
+    renderSeats();
+    updateSummary();
+} else {
+    document.getElementById("movieTitle").textContent = "Choose a movie showtime";
+    document.getElementById("movieGenre").textContent = "";
+    document.getElementById("summaryMovieTitle").textContent = "No show selected";
+    document.getElementById("summaryShowDetails").textContent = "Start from the movie list.";
+    document.getElementById("seatInstruction").textContent =
+        "Return to the movie list and choose a movie showtime first.";
+    bookingMessage.textContent = "A movie and showtime are required before choosing seats.";
+    continueBtn.disabled = true;
+}
