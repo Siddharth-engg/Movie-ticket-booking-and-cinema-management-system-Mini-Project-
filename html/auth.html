@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinevia - Account Access</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            🎬 <span>Cine</span>via
+        </div>
+        <a href="index.html" class="back-home">← Back to Home</a>
+    </header>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="tab-buttons">
+                <button type="button" class="tab-btn active" id="loginTabBtn" onclick="switchTab('login')">Login</button>
+                <button type="button" class="tab-btn" id="signupTabBtn" onclick="switchTab('signup')">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+
+           <!-- Login Form -->
+<form id="loginForm" class="auth-form active" onsubmit="event.preventDefault(); window.location.href='listing.html';">
+    <h2>Welcome Back 👋</h2>
+                <p class="subtitle">Enter your credentials to manage bookings & rewards.</p>
+
+                <div class="input-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="alex@example.com" autocomplete="email" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="loginPassword">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password" required>
+                        <button type="button" class="toggle-password" id="toggleLoginPass" aria-label="Toggle password visibility" title="Show password">👁️</button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me"><input type="checkbox"> Remember me</label>
+                    <a href="#" class="forgot-pass">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="submit-btn">Login to Account</button>
+
+                <div class="divider"><span>OR CONTINUE WITH</span></div>
+
+                <div class="social-login">
+                    <button type="button" class="social-btn">🌐 Google</button>
+                    <button type="button" class="social-btn">🍎 Apple</button>
+                </div>
+            </form>
+
+            <!-- Signup Form -->
+<<<<<<< HEAD
+            <form id="signupForm" class="auth-form" onsubmit="event.preventDefault(); window.location.href='listing.html';">
+=======
+            <form id="signupForm" class="auth-form">
+>>>>>>> origin/Member-2/Shubh_Gupta
+                <h2>Create Account ✨</h2>
+                <p class="subtitle">Join Cinevia for instant seat locking and zero booking fees.</p>
+
+                <div class="input-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" placeholder="Alex Johnson" autocomplete="name" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" placeholder="alex@example.com" autocomplete="email" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="signupPassword">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="signupPassword" placeholder="••••••••" autocomplete="new-password" required>
+                        <button type="button" class="toggle-password" id="toggleSignupPass" aria-label="Toggle password visibility" title="Show password">👁️</button>
+                    </div>
+                    <!-- Password Minimum Requirements Checklist -->
+                    <div class="password-requirements" id="passwordRequirements">
+                        <p class="req-title">Password must contain:</p>
+                        <ul>
+                            <li id="req-length" class="invalid"><span>✕</span> Minimum 6 characters</li>
+                            <li id="req-capital" class="invalid"><span>✕</span> 1 capital letter (A-Z)</li>
+                            <li id="req-small" class="invalid"><span>✕</span> 1 small letter (a-z)</li>
+                            <li id="req-special" class="invalid"><span>✕</span> 1 special symbol (!@#$%)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Create Free Account</button>
+            </form>
+        </div>
+    </div>
+
+<<<<<<< HEAD
+    <script>
+        function switchTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const loginTab = document.getElementById('loginTabBtn');
+            const signupTab = document.getElementById('signupTabBtn');
+
+            const isLogin = tab === 'login';
+            loginForm.classList.toggle('active', isLogin);
+            signupForm.classList.toggle('active', !isLogin);
+            loginTab.classList.toggle('active', isLogin);
+            signupTab.classList.toggle('active', !isLogin);
+        }
+
+        function togglePass(id) {
+            const input = document.getElementById(id);
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+        }
+    </script>
+=======
+    <!-- Cinevia Authentication Script -->
+    <script src="../js/auth.js"></script>
+>>>>>>> origin/Member-2/Shubh_Gupta
+</body>
+</html>
