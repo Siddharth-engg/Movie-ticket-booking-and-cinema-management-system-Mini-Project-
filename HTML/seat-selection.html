@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cinevia - Seat Selection</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Seat Page CSS -->
+    <link rel="stylesheet" href="../css/seat-selection.css">
+</head>
+
+<body>
+
+    <!-- === HEADER ================= -->
+
+    <header class="header">
+
+        <div class="logo">Cinevia</div>
+
+        <a href="listing.html" class="back-link">← Back to Movies</a>
+
+    </header>
+
+
+    <!-- ======= MAIN SECTION == -->
+
+    <main class="seat-page">
+
+        <!-- Movie information -->
+
+        <section class="movie-info">
+
+            <p class="small-heading">NOW BOOKING</p>
+
+            <h1 id="movieTitle">Loading movie...</h1>
+
+            <p class="movie-type" id="movieGenre"></p>
+
+            <div class="show-details">
+
+                <div>
+                    <span>DATE</span>
+                    <strong id="showDate"></strong>
+                </div>
+
+                <div>
+                    <span>TIME</span>
+                    <strong id="showTime"></strong>
+                </div>
+
+                <div>
+                    <span>SCREEN</span>
+                    <strong id="screenName"></strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SEAT AREA ===== -->
+
+        <section class="seat-section">
+
+            <div class="section-title">
+                <h2>Select Your Seats</h2>
+                <p id="seatInstruction">Choose your preferred seats</p>
+            </div>
+
+
+            <!-- Cinema screen -->
+
+            <div class="screen-area">
+
+                <div class="screen"></div>
+                <p>SCREEN</p>
+
+            </div>
+
+
+            <!-- Seat layout -->
+
+      <!-- ================= SEAT LAYOUT ================= -->
+
+<div class="seat-layout" id="seatLayout" aria-label="Cinema seat layout">
+                <!-- Seats are generated dynamically by seat-selection.js -->
+            </div>
+
+            <div class="legend">
+
+                <div>
+                    <span class="legend-box available-box"></span>
+                    Available
+                </div>
+
+                <div>
+                    <span class="legend-box selected-box"></span>
+                    Selected
+                </div>
+
+                <div>
+                    <span class="legend-box booked-box"></span>
+                    Booked
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ====--==== BOOKING SUMMARY ================= -->
+
+        <aside class="summary">
+
+            <h2>Booking Summary</h2>
+
+            <div class="summary-movie">
+
+                <h3 id="summaryMovieTitle">Loading...</h3>
+                <p id="summaryShowDetails"></p>
+
+            </div>
+
+
+            <div class="selected-info">
+
+                <span>Selected Seats</span>
+
+                <div class="selected-seats" id="selectedSeatsDisplay">
+                    <span>None</span>
+                </div>
+
+            </div>
+
+
+            <div class="price-details">
+
+                <div>
+                    <span>Tickets (<span id="ticketCount">0</span> × <span id="ticketPriceLabel">₹180</span>)</span>
+                    <strong id="ticketTotal">₹0</strong>
+                </div>
+
+                <div>
+                    <span>Convenience Fee</span>
+                    <strong id="convenienceFee">₹30</strong>
+                </div>
+
+            </div>
+
+
+            <div class="total">
+
+                <span>Total Amount</span>
+                <strong id="grandTotal">₹0</strong>
+
+            </div>
+
+
+            <button type="button" class="continue-btn" id="continueBtn">
+                Confirm Booking
+            </button>
+
+            <p class="note">
+                No real payment is processed. You can change your seats before confirming.
+            </p>
+
+        </aside>
+
+    </main>
+    <script src="../js/movie-data.js"></script>
+    <script src="../js/seat-selection.js" defer></script>
+</body>
+</html>
