@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse Cinevia now-showing and upcoming movies.">
+    <title>Movies - Cinevia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/mini.css">
+</head>
+<body>
+    <header class="navbar">
+        <a class="logo" href="index.html">🎬 <span>Cinevia</span></a>
+        <nav aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="#now-showing">Now Showing</a>
+            <a href="#upcoming">Coming Soon</a>
+        </nav>
+        <div class="nav-buttons">
+            <a href="auth.html" class="login-btn">Login</a>
+            <a href="auth.html#signup" class="signup-btn">Sign Up</a>
+        </div>
+    </header>
+
+    <main class="catalog-page">
+        <section class="catalog-intro">
+            <p class="section-subtitle">CINEVIA MOVIE GUIDE</p>
+            <h1>Choose what to watch</h1>
+            <p>Search by title, genre, or language. Select a movie to view its cinema showtimes.</p>
+            <label class="movie-search-wrap">
+                <span class="visually-hidden">Search movies</span>
+                <input type="search" id="movieSearch" placeholder="Search movies..." aria-label="Search movies">
+            </label>
+        </section>
+
+        <section class="catalog-filters" aria-label="Movie filters">
+            <div class="filter-group">
+                <span class="filter-title">Genre</span>
+                <button class="chip active" type="button" data-filter-group="genre" data-filter-value="all" aria-pressed="true">All</button>
+                <button class="chip" type="button" data-filter-group="genre" data-filter-value="action" aria-pressed="false">Action</button>
+                <button class="chip" type="button" data-filter-group="genre" data-filter-value="drama" aria-pressed="false">Drama</button>
+                <button class="chip" type="button" data-filter-group="genre" data-filter-value="crime" aria-pressed="false">Crime</button>
+                <button class="chip" type="button" data-filter-group="genre" data-filter-value="thriller" aria-pressed="false">Thriller</button>
+            </div>
+            <div class="filter-group">
+                <span class="filter-title">Language</span>
+                <button class="chip active" type="button" data-filter-group="language" data-filter-value="all" aria-pressed="true">All</button>
+                <button class="chip" type="button" data-filter-group="language" data-filter-value="hindi" aria-pressed="false">Hindi</button>
+                <button class="chip" type="button" data-filter-group="language" data-filter-value="english" aria-pressed="false">English</button>
+                <button class="chip" type="button" data-filter-group="language" data-filter-value="telugu" aria-pressed="false">Telugu</button>
+            </div>
+        </section>
+
+        <section class="catalog-section" id="now-showing">
+            <div class="section-heading">
+                <div>
+                    <p class="section-subtitle">BOOK NOW</p>
+                    <h2>Now Showing</h2>
+                </div>
+            </div>
+            <div class="movie-grid catalog-grid" id="nowShowingGrid" aria-live="polite"></div>
+        </section>
+
+        <section class="catalog-section" id="upcoming">
+            <div class="section-heading">
+                <div>
+                    <p class="section-subtitle">COMING SOON</p>
+                    <h2>Upcoming Movies</h2>
+                </div>
+            </div>
+            <div class="movie-grid catalog-grid" id="upcomingGrid"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h2>🎬 Cinevia</h2>
+                <p>Choose a film, explore showtimes, and reserve seats.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Explore</h3>
+                <a href="index.html">Home</a>
+                <a href="#now-showing">Now Showing</a>
+                <a href="#upcoming">Coming Soon</a>
+            </div>
+            <div class="footer-contact">
+                <h3>Demo information</h3>
+                <p>Bookings are stored in this browser only. No real payment is taken.</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© <span id="currentYear"></span> Cinevia</p>
+            <p><a href="index.html">Back to home</a></p>
+        </div>
+    </footer>
+    <script src="../js/movie-data.js"></script>
+    <script src="../js/mini.js" defer></script>
+</body>
+</html>
