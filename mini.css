@@ -139,7 +139,7 @@ body {
             rgba(10, 25, 49, 0.90) 35%,
             rgba(10, 25, 49, 0.25) 75%
         ),
-        url("../photo/Movie Theatre.png")
+        url("photo/Movie Theatre.png")
         center/cover no-repeat;
 
     animation-delay: 0s;

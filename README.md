@@ -2,7 +2,7 @@
 
 ## Run the website
 
-For the complete booking flow, serve the project root with a local web server (for example, `python -m http.server 8000`) and visit `http://localhost:8000/html/index.html`. Browser storage may not work when opening the files directly with `file://`.
+For the complete booking flow, serve the project root with a local web server (for example, `python -m http.server 8000`) and visit `http://localhost:8000/` or `http://localhost:8000/index.html`. Browser storage may not work when opening the files directly with `file://`.
 
 The booking flow is:
 
